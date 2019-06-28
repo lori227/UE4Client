@@ -1,32 +1,38 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
+.vs
+*.bin
+*.log
+Fighter.xcworkspace/xcuserdata/lori.xcuserdatad/UserInterfaceState.xcuserstate
+Fighter.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
+Fighter.xcworkspace/xcuserdata/lori.xcuserdatad/WorkspaceSettings.xcsettings
+Binaries/
+Plugins/libprotobuf/Binaries/
+Plugins/libprotobuf/Intermediate/
+Plugins/lua_wrapper/Binaries/
+Plugins/lua_wrapper/Intermediate/
+Plugins/slua_unreal/Binaries/
+Plugins/slua_unreal/Intermediate/
+Fighter.sln
+Fighter.xcworkspace/contents.xcworkspacedata
+Intermediate/
+Saved/
+Plugins/libprotobuf/ThirdParty/include/benchmarks/
+Plugins/libprotobuf/ThirdParty/include/conformance/
+.deps
+.libs
+Plugins/libprotobuf/ThirdParty/include/src/google/protobuf/compiler
 *.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+*.lo
+googletest
+*unittest*
+*testdata*
+.dirstamp
+*-test*
+Plugins/libprotobuf/ThirdParty/include/cmake/vsbuild/CMakeFiles/
+Plugins/libprotobuf/ThirdParty/include/cmake/vsbuild/libprotobuf.dir/
+Plugins/libprotobuf/ThirdParty/include/cmake/vsbuild/x64/
+*.user
+Release
+Debug
+*.ipch
+Fighter.xcworkspace/xcuserdata/lori.xcuserdatad/IDEFindNavigatorScopes.plist
+Fighter.xcworkspace/xcuserdata/lori.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist

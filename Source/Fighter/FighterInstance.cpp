@@ -56,7 +56,7 @@ void UFighterInstance::Init()
     FString name = TEXT( "server" );
 #endif
 
-    __LOG_INFO__( LogInstance, "UFighterInstance::Init...[{}]!", TCHAR_TO_UTF8( *name ) );
+
     // net work
     _net_client = new FNetClient();
     _net_client->Init( name, nettype, 200, 200, false );
@@ -73,6 +73,7 @@ void UFighterInstance::Init()
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     _event_module->PushEvent( EEventType::InitFinish, ( uint32 )nettype );
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    __LOG_INFO__( LogInstance, "[{}] Init...ok!", TCHAR_TO_UTF8( *name ) );
 }
 
 void UFighterInstance::Shutdown()

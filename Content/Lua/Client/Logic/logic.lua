@@ -1,17 +1,13 @@
-local CDisplay = require "Logic/display"
 local CPlayer = require "Logic/player"
+local CDisplay = require "Logic/display"
 
-_display = CDisplay.new()
 _player = CPlayer.new()
-
+_player:AddModule( CDisplay.new() )
 -------------------------------------------------------
 -------------------------------------------------------
 local M = {}
 
 function M.Init()  
-    -- display
-    _display:Init()
-
     -- player
     _player:Init()
 end

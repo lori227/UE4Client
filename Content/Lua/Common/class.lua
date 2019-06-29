@@ -25,8 +25,8 @@ function class(classname, super)
             cls.ctor = function() end  
         end  
   
-        cls._class_name = classname  
         cls.__ctype = 1  
+        cls._class_name = classname  
   
         function cls.new(...)  
             local instance = cls.__create(...)  
@@ -47,9 +47,9 @@ function class(classname, super)
             cls = {ctor = function() end}  
         end  
   
-        cls._class_name = classname  
         cls.__ctype = 2 -- lua  
         cls.__index = cls  
+        cls._class_name = classname  
   
         function cls.new(...)  
             local instance = setmetatable({}, cls)  

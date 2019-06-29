@@ -1,8 +1,10 @@
-local CPlayer = require "Logic/player"
-local CDisplay = require "Logic/display"
+local CPlayer = require "Player/player"
+local CDisplay = require "Player/display"
 
 _player = CPlayer.new()
 _player:AddModule( CDisplay.new() )
+-------------------------------------------------------
+-------------------------------------------------------
 -------------------------------------------------------
 -------------------------------------------------------
 local M = {}

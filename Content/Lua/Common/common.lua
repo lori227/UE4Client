@@ -3,9 +3,6 @@ print( _VERSION )
 require "../Common/class"
 require "../Common/table"
 
-
-_define = require "../Common/define"
-
 local CJson = require "../Common/json"
 _json = CJson.new()
 
@@ -36,5 +33,8 @@ _protobuf = CProtobuf.new()
 
 local CTimer = require "../Common/timer"
 _timer = CTimer.new()
+
+local CFSM = require "../Common/fsm/fsm"
+_fsm = CFSM.new()
 
 

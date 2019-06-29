@@ -1,5 +1,6 @@
+require "define"
 require "../Common/common"
-_logic = require "Logic/logic"
+_logic = require "include"
 
 Main = {}
 

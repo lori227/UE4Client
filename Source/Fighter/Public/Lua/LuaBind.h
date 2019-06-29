@@ -17,18 +17,24 @@ namespace slua
     public:
         // create
         static LuaOwnedPtr<FLuaBind> Create();
-        
+
         // content path
         static FString ProjectContentDir();
-        
+
         // net connect
         static void Connect( uint64 id, const char* ip, uint32 port );
-        
+
         // net send
         static bool Send( uint32 msgid, const char* data, uint32 length );
-        
+
         // log
         static void LogContent( uint32 level, const char* content );
+
+        // save ini
+        static void SaveDataToConfig( const char* section, const char* key, const char* data );
+
+        // ∂¡»°≈‰÷√
+        static const char* ReadDataFromConfig( const char* section, const char* key );
     };
 }
 

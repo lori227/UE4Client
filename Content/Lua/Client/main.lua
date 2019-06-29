@@ -20,11 +20,6 @@ function Main.Init()
 
 	-- logic module
 	_logic:Init()
-
-	_net_client:AddConnect( "Main", Main.OnConnect )
-
-	-- 认证
-	_timer:AddDelayTimer( "main", 2, Main.Auth )
 end
 
 function Main.Auth()
@@ -49,7 +44,15 @@ function Main.Auth()
 	_net_client:Connect( zone.zoneid, zone.ip, zone.port )
 end
 
+Main.show = false
 function Main.Tick( deltatime )
+	if Main.show == false then
+		Main.show = true
+		Main.userWidget_ = slua.loadUI('/Game/Blueprints/UI/Widget/Login/UI_InternalAuth.UI_InternalAuth')
+		print( Main.userWidget_ )
+		Main.userWidget_:AddToViewport(0)
+	end
+
 	-- 定时器逻辑
 	_timer:Tick( deltatime )
 end

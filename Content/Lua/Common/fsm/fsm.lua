@@ -16,6 +16,10 @@ end
 -- 添加状态
 function CFSM:AddState( state )
     self._states[ state._state_id ] = state
+    for k, v in pairs( self._states ) do
+        print(k )
+        print( v._state_id )
+    end
 end
 
 -- 改变状态
@@ -37,8 +41,8 @@ function CFSM:Tick( deltatime )
             self._cur_state:OnLeave()
         end
 
+        self._new_state:OnEnter()
         self._cur_state = self._new_state
-        self._cur_state:OnEnter()
         self._new_state = nil
     end
 

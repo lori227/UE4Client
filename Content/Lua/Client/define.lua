@@ -12,6 +12,19 @@ FSMStateEnum =
 {
     CHECK_VERSION = "version",      -- 检查版本
     BATCH_UPDATE = "batch",         -- 补丁更新
-    ACCOUNT_AUTH = "auth",          -- 账号验证
+    INTERNAL_AUTH = "internal",     -- 内部验证
+    STEAM_AUTH = "steam",           -- 内部验证
+    WEIXIN_AUTH = "weixin",         -- 内部验证
     LOGIN_GAME = "login",           -- 登陆游戏
 }
+
+-- 渠道定义
+ChannelEnum =
+{
+    INTERNAL = 1,        -- 内部测试
+    STAEM    = 2,        -- steam
+    WEIXIN   = 3,        -- 微信
+}
+
+_define = {}
+_define._channel = ChannelEnum.INTERNAL        -- 渠道id

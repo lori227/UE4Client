@@ -22,8 +22,7 @@ function Main.Init()
 end
 
 function Main.InitFinish( value )
-	Main.userWidget_ = slua.loadUI('/Game/Blueprints/UI/Widget/Login/UI_InternalAuth.UI_InternalAuth')
-	Main.userWidget_:AddToViewport( 0 )
+	_fsm:ChangeToState( FSMStateEnum.CHECK_VERSION )
 end
 
 function Main.Auth()
@@ -49,6 +48,9 @@ function Main.Auth()
 end
 
 function Main.Tick( deltatime )
+	-- 状态机
+	_fsm:Tick( deltatime )
+
 	-- 定时器逻辑
 	_timer:Tick( deltatime )
 end

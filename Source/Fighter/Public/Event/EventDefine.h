@@ -16,19 +16,22 @@ public:
     // 类型
     EEventType _type;
 
-    // 数值
-    uint64 _value = 0;
+    uint64 _id = 0;
 
-    // 数据
-    void* _data = nullptr;
+    // 数值
+    int64 _value = 0;
 };
 
 // 事件函数
-typedef std::function< void( uint64 value, void* data ) > EventFunction;
+typedef std::function< void( uint64 id, int64 value ) > EventFunction;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 UENUM( BlueprintType )
 enum class EEventType : uint8
 {
-    InitFinish UMETA( DisplayName = "Init Finish" ),
+    None UMETA( DisplayName = "None" ),						// 无效值
+    NetConnect UMETA( DisplayName = "NetConnect" ),			// 网络连接成功
+    Disconnect UMETA( DisplayName = "Disconnect" ),			// 网络连接关闭
+    FailedConnect UMETA( DisplayName = "FailedConnect" ),	// 网络连接失败
+    InitFinish UMETA( DisplayName = "InitFinish" ),			// 初始化完成
 };
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////

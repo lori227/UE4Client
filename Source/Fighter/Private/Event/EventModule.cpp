@@ -1,5 +1,6 @@
 ﻿#include "EventModule.h"
 #include "FighterInstance.h"
+#include "Public/Lua/LuaModule.h"
 
 UEventModule::UEventModule( const FObjectInitializer& ObjectInitializer )
     : Super( ObjectInitializer )
@@ -29,7 +30,11 @@ void UEventModule::Tick( float deltatime )
         auto function = _event_function.Find( eventdata->_type );
         if ( function != nullptr )
         {
-            function->operator()( eventdata->_value, eventdata->_data );
+            function->operator()( eventdata->_id, eventdata->_value );
+        }
+        else
+        {
+            UFighterInstance::Instance()->_lua_module->OnLuaEvent( ( uint32 )eventdata->_type, eventdata->_id, eventdata->_value );
         }
 
         eventdata = PullEvent();
@@ -46,12 +51,12 @@ void UEventModule::ClearAllEvents()
 
 }
 
-void UEventModule::PushEvent( EEventType type, uint64 value /* = 0 */, void* data /* = nullptr */ )
+void UEventModule::PushEvent( EEventType type, uint64 id /* = 0 */, int64 value /* = 0 */ )
 {
     auto eventdata = NewObject<UEventData>();
+    eventdata->_id = id;
     eventdata->_type = type;
     eventdata->_value = value;
-    eventdata->_data = data;
 
     FScopeLock lock( &_mutex );
     _events.Insert( eventdata, 0 );

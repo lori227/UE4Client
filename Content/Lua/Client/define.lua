@@ -7,6 +7,16 @@ AuthUrl =
     { name = "外网测试服", url = "http://139.196.33.35:7001/auth" },
 }
 
+-- 时间枚举
+EventEnum = 
+{
+    NET_CONNECT         = 1,        -- 连接成功
+    NET_DISCONNECT      = 2,        -- 连接断开
+    NET_FAILEDCONNECT   = 3,        -- 连接失败
+    INIT_FINISH         = 4,        -- 初始完成
+}
+
+
 -- 状态机的状态
 FSMStateEnum = 
 {

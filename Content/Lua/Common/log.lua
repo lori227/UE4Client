@@ -1,9 +1,5 @@
 local CLog = class( "CLog" )
 
-function CLog:ctor()
-
-end
-
 -- info
 function CLog:LogInfo( content )
     FLuaBind.Log( 5, content )

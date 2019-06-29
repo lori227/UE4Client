@@ -16,10 +16,6 @@ end
 -- 添加状态
 function CFSM:AddState( state )
     self._states[ state._state_id ] = state
-    for k, v in pairs( self._states ) do
-        print(k )
-        print( v._state_id )
-    end
 end
 
 -- 改变状态

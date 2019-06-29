@@ -1,7 +1,6 @@
 local CPlayer = class( "CPlayer", CKernel )
 
 function CPlayer:ctor()
-    self.super:ctor( "player" )
     self._modules = {}
 end
 

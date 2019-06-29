@@ -21,20 +21,11 @@ public:
     void Shutdown();
 
 public:
-    // conenct ok
-    void OnNetConnectOk( uint64 id, int32 code );
-
-    // connect failed
-    void OnNetFailed( uint64 id, int32 code );
-
-    // disconnect
-    void OnNetDisconnect( uint64 id, int32 code );
+    // call event
+    void OnLuaEvent( uint32 type, uint64 id, int64 value );
 
     // handle message
     void HandleNetMessage( uint32 msgid, const int8* data, uint32 length );
-
-    // init finish
-    void OnLuaInitFinish( uint64 value, void* data );
 
 public:
     // lua path

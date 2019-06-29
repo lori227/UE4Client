@@ -2,7 +2,7 @@ require "define"
 require "../Common/common"
 
 local CPlayer = require "Player/player"
-_player = CPlayer.new()
+_player = CPlayer.new( "player" )
 
 local CDisplay = require "Player/display"
 _player:AddModule( CDisplay.new() )

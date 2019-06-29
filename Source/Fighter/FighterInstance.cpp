@@ -61,9 +61,6 @@ void UFighterInstance::Init()
     _net_client = new FNetClient();
     _net_client->Init( name, nettype, 200, 200, false );
     _net_client->RegisterMessageFunction( this, &UFighterInstance::HandleNetMessage );
-    _net_client->RegisterNetEventFunction( ENetDefine::ConnectEvent, this, &UFighterInstance::OnNetClientConnectOk );
-    _net_client->RegisterNetEventFunction( ENetDefine::FailedEvent, this, &UFighterInstance::OnNetClientConnectFailed );
-    _net_client->RegisterNetEventFunction( ENetDefine::DisconnectEvent, this, &UFighterInstance::OnNetClientDisconnect );
 
     // lua
     _lua_module = new FLuaModule();
@@ -72,10 +69,6 @@ void UFighterInstance::Init()
     // event
     _event_module = NewObject< UEventModule >();
     _event_module->Init( nettype );
-    _event_module->RegisterEvent( EEventType::InitFinish, this, &UFighterInstance::OnInitFinish );
-
-
-
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     _event_module->PushEvent( EEventType::InitFinish, ( uint32 )nettype );
@@ -134,27 +127,8 @@ bool UFighterInstance::Send( uint32 msgid, const int8* data, uint32 length )
     return _net_client->SendNetMessage( msgid, data, length );
 }
 
-void UFighterInstance::OnNetClientConnectOk( uint64 id, int32 code )
-{
-    _lua_module->OnNetConnectOk( id, code );
-}
-
-void UFighterInstance::OnNetClientConnectFailed( uint64 id, int32 code )
-{
-    _lua_module->OnNetFailed( id, code );
-}
-
-void UFighterInstance::OnNetClientDisconnect( uint64 id, int32 code )
-{
-    _lua_module->OnNetDisconnect( id, code );
-}
-
 void UFighterInstance::HandleNetMessage( uint32 msgid, const int8* data, uint32 length )
 {
     _lua_module->HandleNetMessage( msgid, data, length );
 }
 /////////////////////////////////////////////////////////////////////////////////////
-void UFighterInstance::OnInitFinish( uint64 value, void* data )
-{
-    _lua_module->OnLuaInitFinish( value, data );
-}

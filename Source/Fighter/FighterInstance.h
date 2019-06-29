@@ -52,20 +52,9 @@ public:
     bool Send( uint32 msgid, const int8* data, uint32 length );
 
 protected:
-    // 连接成功
-    void OnNetClientConnectOk( uint64 id, int32 code );
-
-    // 连接失败
-    void OnNetClientConnectFailed( uint64 id, int32 code );
-
-    // 连接断开
-    void OnNetClientDisconnect( uint64 id, int32 code );
-
     // 处理消息函数
     void HandleNetMessage( uint32 msgid, const int8* data, uint32 length );
     ////////////////////////////////////////////////////////////////////////////////
-    // 初始化完成回调
-    void OnInitFinish( uint64 value, void* data );
 
 public:
     // 网络客户端

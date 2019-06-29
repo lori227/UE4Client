@@ -1,11 +1,8 @@
-﻿// Fill out your copyright notice in the Description page of Project Settings.
-
-#pragma once
+﻿#pragma once
 
 #include "Public/Headers.h"
 #include "Sockets.h"
 #include "SocketSubsystem.h"
-#include "NetEvent.h"
 #include "NetDefine.h"
 #include "Runtime/Networking/Public/Networking.h"
 
@@ -40,12 +37,6 @@ public:
 
     // disconnect
     void OnDisconnect();
-
-    // event
-    void PushNetEvent( uint32 type, int32 code = 0 );
-
-    // 弹出一个网络事件
-    FNetEvent* PopNetEvent();
 
     // connect
     void StartConnect( const FString& ip, uint32 port );
@@ -86,12 +77,6 @@ private:
 
     // 接收线程
     FNetRecv* _net_recv = nullptr;
-
-    // 网络事件列表
-    std::list< FNetEvent* > _event_queue;
-
-    /**< 互斥锁 */
-    FCriticalSection _event_lock;
 
     // 最后一次接受消息时间
     uint64 _last_recv_time = 0;

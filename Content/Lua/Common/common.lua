@@ -34,6 +34,9 @@ _protobuf = CProtobuf.new()
 local CTimer = require "../Common/timer"
 _timer = CTimer.new()
 
+local CEvent = require "../Common/event"
+_event = CEvent.new()
+
 local CFSM = require "../Common/fsm/fsm"
 _fsm = CFSM.new()
 

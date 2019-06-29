@@ -27,11 +27,11 @@ public:
     void Shutdown();
     ////////////////////////////////////////////////////////////
     // 添加事件
-    void PushEvent( EEventType type, uint64 value = 0, void* data = nullptr );
+    void PushEvent( EEventType type, uint64 id = 0, int64 value = 0 );
 
     // 注册事件函数
     template< class T >
-    void RegisterEvent( EEventType type, T* object, void( T::*handle )( uint64 value, void* data ) )
+    void RegisterEvent( EEventType type, T* object, void( T::*handle )(  uint64, int64 ) )
     {
         EventFunction function = std::bind( handle, object, std::placeholders::_1, std::placeholders::_2 );
         _event_function.Add( type, function );
@@ -45,10 +45,10 @@ protected:
     UEventData* PullEvent();
 
 private:
-    /**< 互斥锁 */
+    // 互斥锁
     FCriticalSection _mutex;
 
-    // 时间列表
+    // 事件列表
     TArray< UEventData* > _events;
 
     // 网络回调

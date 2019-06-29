@@ -1,10 +1,6 @@
 local pbc = require "../Common/pbc"
 local CProtobuf = class( "CProtobuf" )
 
-function CProtobuf:ctor()
-    
-end
-
 -- 初始化协议
 function CProtobuf:LoadProtocol( protopath, protofiles )
 	local protodir = string.format( "%s%s", FLuaBind.ContentDir(), protopath )

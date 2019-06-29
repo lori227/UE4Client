@@ -39,32 +39,11 @@ bool FNetClient::SendNetMessage( uint32 msgid, const int8* data, uint32 length )
 }
 
 void FNetClient::Tick( float deltatime )
-{   // 处理网络事件
-    HandleNetEvent();
-
+{
     // 处理网络消息
     HandleNetMessage();
 }
 
-void FNetClient::HandleNetEvent()
-{
-    auto event = _net_socket->PopNetEvent();
-    while ( event != nullptr )
-    {
-        auto function = _event_function.Find( event->_type );
-        if ( function != nullptr )
-        {
-            // 网络事件回调
-            function->operator()( _id, event->_code );
-        }
-        else
-        {
-            __LOG_ERROR__( LogNetwork, "event type=[{}] error!", event->_type );
-        }
-
-        event = _net_socket->PopNetEvent();
-    }
-}
 
 void FNetClient::HandleNetMessage()
 {

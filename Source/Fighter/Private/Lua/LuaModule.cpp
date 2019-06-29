@@ -54,11 +54,8 @@ void FLuaModule::Init( ENetType nettype )
 
 void FLuaModule::Tick( float deltatime )
 {
-    if ( _is_lua_ok )
-    {
-        _state.tick( deltatime );
-        _state.call( "Main.Tick", deltatime );
-    }
+    _state.tick( deltatime );
+    _state.call( "Main.Tick", deltatime );
 }
 
 void FLuaModule::Shutdown()
@@ -68,19 +65,9 @@ void FLuaModule::Shutdown()
 
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
-void FLuaModule::OnNetConnectOk( uint64 id, int32 code )
+void FLuaModule::OnLuaEvent( uint32 type, uint64 id, int64 value )
 {
-    _state.call( "Main.NetConnect", id, code );
-}
-
-void FLuaModule::OnNetFailed( uint64 id, int32 code )
-{
-    _state.call( "Main.NetFailed", id, code );
-}
-
-void FLuaModule::OnNetDisconnect( uint64 id, int32 code )
-{
-    _state.call( "Main.NetDisconnect", id, code );
+    _state.call( "Main.OnEvent", type, id, value );
 }
 
 void FLuaModule::HandleNetMessage( uint32 msgid, const int8* data, uint32 length )
@@ -88,8 +75,5 @@ void FLuaModule::HandleNetMessage( uint32 msgid, const int8* data, uint32 length
     _state.call( "Main.HandleMessage", msgid, ( void* )data, length );
 }
 
-void FLuaModule::OnLuaInitFinish( uint64 value, void* data )
-{
-    _state.call( "Main.InitFinish", value );
-}
+
 

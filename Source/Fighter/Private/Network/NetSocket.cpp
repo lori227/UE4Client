@@ -4,6 +4,7 @@
 #include "Public/Network/NetConnect.h"
 #include "Public/Network/NetSend.h"
 #include "Public/Network/NetRecv.h"
+#include "Public/Event/EventModule.h"
 
 FNetSocket::FNetSocket()
 {
@@ -84,58 +85,19 @@ void FNetSocket::OnConnect()
     _is_connect = true;
     _last_recv_time = FPlatformTime::Seconds();
 
-    PushNetEvent( ENetDefine::ConnectEvent );
+    UEventModule::GetEventModule()->PushEvent( EEventType::NetConnect );
 }
 
 void FNetSocket::OnFailed()
 {
     _is_connect = false;
-    PushNetEvent( ENetDefine::FailedEvent );
+    UEventModule::GetEventModule()->PushEvent( EEventType::FailedConnect );
 }
 
 void FNetSocket::OnDisconnect()
 {
     _is_connect = false;
-    PushNetEvent( ENetDefine::DisconnectEvent );
-}
-
-void FNetSocket::PushNetEvent( uint32 type, int32 code /* = 0 */ )
-{
-    if ( _is_close )
-    {
-        return;
-    }
-
-    auto event = new FNetEvent();
-    event->_type = type;
-    event->_code = code;
-
-    FScopeLock Lock( &_event_lock );
-    _event_queue.push_back( event );
-}
-
-FNetEvent* FNetSocket::PopNetEvent()
-{
-    FNetEvent* event = nullptr;
-    {
-        FScopeLock Lock( &_event_lock );
-        if ( !_event_queue.empty() )
-        {
-            event = _event_queue.front();
-            _event_queue.pop_front();
-        }
-    }
-
-    if ( event == nullptr )
-    {
-        return nullptr;
-    }
-
-    static int8* _buff[ 56 ] = {};
-    memcpy( _buff, event, sizeof( FNetEvent ) );
-
-    delete event;
-    return ( FNetEvent* )_buff;
+    UEventModule::GetEventModule()->PushEvent( EEventType::Disconnect );
 }
 
 bool FNetSocket::SendNetMessage( uint32 msgid, const int8* data, uint32 length )

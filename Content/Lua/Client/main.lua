@@ -17,11 +17,19 @@ function Main.Init()
 	}
 	_protobuf:LoadProtocol( "Lua/Protocol", protofiles )
 
+	-- netclient 
+	_event:AddEvent( EventEnum.NET_CONNECT, function( id, value ) _net_client:OnConnect( id, value ) end )
+	_event:AddEvent( EventEnum.NET_DISCONNECT, function( id, value ) _net_client:OnFailed( id, value ) end )
+	_event:AddEvent( EventEnum.NET_FAILEDCONNECT, function( id, value ) _net_client:OnDisconnect( id, value ) end )
+
+	-- fsm
+	_event:AddEvent( EventEnum.INIT_FINISH, Main.Startup )
+
 	-- logic module
 	_logic:Init()
 end
 
-function Main.InitFinish( value )
+function Main.Startup( id, value )
 	_fsm:ChangeToState( FSMStateEnum.CHECK_VERSION )
 end
 
@@ -70,16 +78,8 @@ end
 ------------------------------------------------------------------
 ------------------------------------------------------------------
 ------------------------------------------------------------------
-function Main.NetConnect( id, code )
-	_net_client:OnConnect( id, code )
-end
-
-function Main.NetFailed( id, code )
-	_net_client:OnFailed( id, code )
-end
-
-function Main.NetDisconnect( id, code )
-	_net_client:OnDisconnect( id, code )
+function Main.OnEvent( type, id, value )
+	return _event:OnEvent( type, id, value )
 end
 
 function Main.HandleMessage( msgid, data, length )

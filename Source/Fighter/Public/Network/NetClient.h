@@ -31,14 +31,6 @@ public:
     bool SendNetMessage( uint32 msgid, google::protobuf::Message* message );
 
 public:
-    // 注册网络事件函数
-    template< class T >
-    void RegisterNetEventFunction( uint32 type, T* object, void( T::*handle )( uint64 id, int32 code ) )
-    {
-        NetEventFunction function = std::bind( handle, object, std::placeholders::_1, std::placeholders::_2 );
-        _event_function.Add( type, function );
-    }
-
     // 注册消息处理函数
     template< class T >
     void RegisterMessageFunction( T* object, void ( T::*handle )( uint32, const int8*, uint32 ) )
@@ -47,9 +39,6 @@ public:
     }
 
 protected:
-    // 处理网络时间
-    void HandleNetEvent();
-
     // 处理网络消息
     void HandleNetMessage();
 protected:
@@ -58,9 +47,6 @@ protected:
 
     // socket
     FNetSocket* _net_socket = nullptr;
-
-    // 网络事件
-    TMap< uint32, NetEventFunction > _event_function;
 
     // 消息处理函数
     MessageFunction _message_function;

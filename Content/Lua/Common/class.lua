@@ -25,7 +25,7 @@ function class(classname, super)
             cls.ctor = function() end  
         end  
   
-        cls.__cname = classname  
+        cls._class_name = classname  
         cls.__ctype = 1  
   
         function cls.new(...)  
@@ -47,7 +47,7 @@ function class(classname, super)
             cls = {ctor = function() end}  
         end  
   
-        cls.__cname = classname  
+        cls._class_name = classname  
         cls.__ctype = 2 -- lua  
         cls.__index = cls  
   

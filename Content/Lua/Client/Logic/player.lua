@@ -1,56 +1,24 @@
-local CPlayer = class( "CPlayer" )
+local CPlayer = class( "CPlayer", CKernel )
 
 function CPlayer:ctor()
-    self._id = 0
+    self.super:ctor()
+    self._modules = {}
+end
+
+function CPlayer:AddModule( module )
+    self._modules[ module._class_name ] = module
 end
 
 function CPlayer:Init()
-    _message:Add( _protobuf:GetMsgId( "MSG_LOGIN_ACK" ), "KFMsg.MsgLoginAck", 
-    function( msg )
-         self:HandleLoginAck( msg )
-    end )
+    _message:Add( _protobuf:GetMsgId( "MSG_LOGIN_ACK" ), "KFMsg.MsgLoginAck", function( msg ) self:InitData( msg.playerid, msg.playerdata ) end )
+    _message:Add( _protobuf:GetMsgId( "MSG_SYNC_UPDATE_DATA" ), "KFMsg.MsgSyncUpdateData", function( msg ) self:SyncUpdateData( msg.pbdata ) end )
+    _message:Add( _protobuf:GetMsgId( "MSG_SYNC_ADD_DATA" ), "KFMsg.MsgSyncAddData", function( msg ) self:SyncAddData( msg.pbdata ) end )
+    _message:Add( _protobuf:GetMsgId( "MSG_SYNC_REMOVE_DATA" ), "KFMsg.MsgSyncRemoveData", function( msg ) self:SyncRemoveData( msg.pbdata ) end )
 
-    _message:Add( _protobuf:GetMsgId( "MSG_SYNC_UPDATE_DATA" ), "KFMsg.MsgSyncUpdateData", 
-    function( msg )
-         self:HandleSyncUpdateData( msg )
-    end )
-
-    _message:Add( _protobuf:GetMsgId( "MSG_SYNC_ADD_DATA" ), "KFMsg.MsgSyncAddData", 
-    function( msg )
-         self:HandleSyncAddData( msg )
-    end )
-
-    _message:Add( _protobuf:GetMsgId( "MSG_SYNC_REMOVE_DATA" ), "KFMsg.MsgSyncRemoveData", 
-    function( msg )
-         self:HandleSyncRemoveData( msg )
-    end )
-end
-
-function CPlayer:HandleLoginAck( msg )
-    self._id = msg.playerid
-    _kernel:InitData( msg.playerid, msg.playerdata )
-
-    local data = 
-	{
-	   matchid = 1,
-       serverid = 0,
-	   version = "0.0.0.0"
-	}
-	
-    _net_client:Send( _protobuf:GetMsgId( "MSG_START_MATCH_REQ" ), "KFMsg.MsgStartMatchReq", data )
-end
-
-function CPlayer:HandleSyncUpdateData( msg )
-    _kernel:SyncUpdateData( msg.pbdata )
-end
-
-function CPlayer:HandleSyncAddData( msg )
-    _kernel:SyncAddData( msg.pbdata )
-end
-
-function CPlayer:HandleSyncRemoveData( msg )
-    _kernel:SyncRemoveData( msg.pbdata )
-
+    -- 所有的模块初始化
+    for _, module in pairs( self._modules ) do
+        module:Init()
+    end
 end
 
 return CPlayer

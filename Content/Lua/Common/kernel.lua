@@ -1,6 +1,9 @@
 local CKernel = class( "CKernel" )
 
-function CKernel:ctor()
+function CKernel:ctor( kernelname )
+    -- kernelname
+    self._kernel_name = kernelname
+
     -- id
     self._id = 0
 
@@ -35,7 +38,7 @@ end
 --------------------------------------------------------------------
 -- 添加属性回调
 function CKernel:RegisterAddDataFunction( dataname, cbfunc )
-    RegisterFunction( self._add_function, _define._kernel_name, dataname, cbfunc )
+    RegisterFunction( self._add_function, self._kernel_name, dataname, cbfunc )
 end
 
 function CKernel:RegisterAddObjectFunction( parentname, childname, cbfunc )
@@ -58,7 +61,7 @@ end
 --------------------------------------------------------------------
 -- 删除属性回调
 function CKernel:RegisterRemoveDataFunction( dataname, cbfunc )
-    RegisterFunction( self._remove_function, _define._kernel_name, dataname, cbfunc )
+    RegisterFunction( self._remove_function, self._kernel_name, dataname, cbfunc )
 end
 
 function CKernel:RegisterRemoveObjectFunction( parentname, childname, cbfunc )
@@ -82,7 +85,7 @@ end
 --------------------------------------------------------------------
 -- 更新属性回调
 function CKernel:RegisterUpdateDataFunction( dataname, cbfunc )
-    RegisterFunction( self._update_function, _define._kernel_name, dataname, cbfunc )
+    RegisterFunction( self._update_function, self._kernel_name, dataname, cbfunc )
 end
 
 function CKernel:RegisterUpdateObjectFunction( parentname, childname, cbfunc )
@@ -194,7 +197,7 @@ end
 
 function CKernel:SyncUpdateData( data )
     -- 更新数据
-    UpdateData( _define._kernel_name, 0, self._data, data )
+    UpdateData( self._kernel_name, 0, self._data, data )
 end
 ---------------------------------------------------------
 local function AddData( parentname, data, pbdata )
@@ -229,7 +232,7 @@ local function AddData( parentname, data, pbdata )
 end
 
 function CKernel:SyncAddData( pbdata )
-    AddData( _define._kernel_name, self._data, pbdata )
+    AddData( self._kernel_name, self._data, pbdata )
 end
 ---------------------------------------------------------
 local function RemoveData( parentname, data, pbdata )
@@ -261,7 +264,7 @@ local function RemoveData( parentname, data, pbdata )
 end
 
 function CKernel:SyncRemoveData( pbdata )
-    RemoveData( _define._kernel_name, self._data, pbdata )    
+    RemoveData( self._kernel_name, self._data, pbdata )    
 end
 
 ---------------------------------------------------------

@@ -22,6 +22,11 @@ function Main.Init()
 	_logic:Init()
 end
 
+function Main.InitFinish( value )
+	Main.userWidget_ = slua.loadUI('/Game/Blueprints/UI/Widget/Login/UI_InternalAuth.UI_InternalAuth')
+	Main.userWidget_:AddToViewport( 0 )
+end
+
 function Main.Auth()
 	local channel = _protobuf:GetEnumId("KFMsg.ChannelEnum", "Internal" )
 	local request = { ["channel"] = channel, ["account"] = "lori227" }
@@ -44,15 +49,7 @@ function Main.Auth()
 	_net_client:Connect( zone.zoneid, zone.ip, zone.port )
 end
 
-Main.show = false
 function Main.Tick( deltatime )
-	if Main.show == false then
-		Main.show = true
-		Main.userWidget_ = slua.loadUI('/Game/Blueprints/UI/Widget/Login/UI_InternalAuth.UI_InternalAuth')
-		print( Main.userWidget_ )
-		Main.userWidget_:AddToViewport(0)
-	end
-
 	-- 定时器逻辑
 	_timer:Tick( deltatime )
 end

@@ -5,6 +5,7 @@
 #include "Public/Headers.h"
 #include "Public/Tickable.h"
 #include "Engine/GameInstance.h"
+#include "Public/Event/EventModule.h"
 #include "FighterInstance.generated.h"
 
 /**
@@ -15,6 +16,7 @@ DECLARE_LOG_CATEGORY_CLASS( LogInstance, All, All );
 
 class FNetClient;
 class FLuaModule;
+
 UCLASS( BlueprintType, Blueprintable )
 class UFighterInstance : public UGameInstance, public FTickableGameObject
 {
@@ -33,6 +35,8 @@ public:
     // shutdown
     virtual void Shutdown() override;
 
+    // Call to preload any content before loading a map URL, used during seamless travel as well as map loading
+    virtual void LoadComplete( const float loadtime, const FString& mapname ) override;
     //////////////////////////////////////////////////////////////////////////////
 
     // tick
@@ -48,7 +52,6 @@ public:
     bool Send( uint32 msgid, const int8* data, uint32 length );
 
 protected:
-
     // 连接成功
     void OnNetClientConnectOk( uint64 id, int32 code );
 
@@ -60,6 +63,9 @@ protected:
 
     // 处理消息函数
     void HandleNetMessage( uint32 msgid, const int8* data, uint32 length );
+    ////////////////////////////////////////////////////////////////////////////////
+    // 初始化完成回调
+    void OnInitFinish( uint64 value, void* data );
 
 public:
     // 网络客户端
@@ -68,11 +74,13 @@ public:
     // lua
     FLuaModule* _lua_module = nullptr;
 
-protected:
+    // event
+    UPROPERTY( Transient )
+    UEventModule* _event_module = nullptr;
+private:
+    // instance
     static UFighterInstance* _this;
 
-private:
-
+    // statid
     TStatId _statid;
-
 };

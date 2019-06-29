@@ -4,6 +4,7 @@
 #include "FighterInstance.h"
 #include "Public/Network/NetClient.h"
 #include "Public/Lua/LuaModule.h"
+#include "Public/Event/EventModule.h"
 
 IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, Fighter, "Fighter" );
 
@@ -56,7 +57,6 @@ void UFighterInstance::Init()
 #endif
 
     __LOG_INFO__( LogInstance, "UFighterInstance::Init...[{}]!", TCHAR_TO_UTF8( *name ) );
-
     // net work
     _net_client = new FNetClient();
     _net_client->Init( name, nettype, 200, 200, false );
@@ -68,7 +68,18 @@ void UFighterInstance::Init()
     // lua
     _lua_module = new FLuaModule();
     _lua_module->Init( nettype );
-    _lua_module->Startup();
+
+    // event
+    _event_module = NewObject< UEventModule >();
+    _event_module->Init( nettype );
+    _event_module->RegisterEvent( EEventType::InitFinish, this, &UFighterInstance::OnInitFinish );
+
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    _event_module->PushEvent( EEventType::InitFinish, ( uint32 )nettype );
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
 void UFighterInstance::Shutdown()
@@ -87,6 +98,12 @@ void UFighterInstance::Shutdown()
         _lua_module = nullptr;
     }
 
+    if ( _event_module != nullptr )
+    {
+        _event_module->Shutdown();
+        _event_module = nullptr;
+    }
+
     Super::Shutdown();
 }
 
@@ -95,10 +112,17 @@ void UFighterInstance::Tick( float deltatime )
     // net
     _net_client->Tick( deltatime );
 
+    // event
+    _event_module->Tick( deltatime );
+
     // lua
     _lua_module->Tick( deltatime );
 }
 
+void UFighterInstance::LoadComplete( const float loadtime, const FString& mapname )
+{
+    __LOG_INFO__( LogInstance, "LoadComplete...[{}]!", TCHAR_TO_UTF8( *mapname ) );
+}
 /////////////////////////////////////////////////////////////////////////////////////
 void UFighterInstance::Connect( uint64 id, FString& ip, uint32 port )
 {
@@ -130,3 +154,7 @@ void UFighterInstance::HandleNetMessage( uint32 msgid, const int8* data, uint32 
     _lua_module->HandleNetMessage( msgid, data, length );
 }
 /////////////////////////////////////////////////////////////////////////////////////
+void UFighterInstance::OnInitFinish( uint64 value, void* data )
+{
+    _lua_module->OnLuaInitFinish( value, data );
+}

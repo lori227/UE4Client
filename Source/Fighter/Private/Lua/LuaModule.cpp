@@ -6,6 +6,7 @@
 
 void FLuaModule::Init( ENetType nettype )
 {
+    _state.init();
     if ( nettype == ENetType::Client )
     {
         _lua_path = TEXT( "Lua/Client/" );
@@ -14,14 +15,6 @@ void FLuaModule::Init( ENetType nettype )
     {
         _lua_path = TEXT( "Lua/Server/" );
     }
-
-    _state.init();
-}
-
-void FLuaModule::Startup()
-{
-    _state.close();
-    _state.init();
 
     // register load function
     _state.setLoadFileDelegate( []( const char* fn, uint32 & len, FString & filepath )->uint8*
@@ -93,5 +86,10 @@ void FLuaModule::OnNetDisconnect( uint64 id, int32 code )
 void FLuaModule::HandleNetMessage( uint32 msgid, const int8* data, uint32 length )
 {
     _state.call( "Main.HandleMessage", msgid, ( void* )data, length );
+}
+
+void FLuaModule::OnLuaInitFinish( uint64 value, void* data )
+{
+    _state.call( "Main.InitFinish", value );
 }
 

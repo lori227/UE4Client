@@ -14,9 +14,6 @@ public:
     // int
     void Init( ENetType nettype );
 
-    // startup
-    void Startup();
-
     // tick
     void Tick( float deltatime );
 
@@ -35,6 +32,9 @@ public:
 
     // handle message
     void HandleNetMessage( uint32 msgid, const int8* data, uint32 length );
+
+    // init finish
+    void OnLuaInitFinish( uint64 value, void* data );
 
 public:
     // lua path

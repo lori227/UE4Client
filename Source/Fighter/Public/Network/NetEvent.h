@@ -13,5 +13,5 @@ public:
     int32 _code = 0u;
 };
 
-// 网络时间函数
+// 网络事件函数
 typedef std::function< void( uint64 id, int32 code ) > NetEventFunction;

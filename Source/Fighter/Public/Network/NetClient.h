@@ -59,7 +59,7 @@ protected:
     // socket
     FNetSocket* _net_socket = nullptr;
 
-    // 网络时间
+    // 网络事件
     TMap< uint32, NetEventFunction > _event_function;
 
     // 消息处理函数

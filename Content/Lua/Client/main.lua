@@ -1,5 +1,3 @@
-require "define"
-require "../Common/common"
 _logic = require "include"
 
 Main = {}

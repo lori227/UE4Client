@@ -1,3 +1,6 @@
+require "define"
+require "../Common/common"
+
 local CPlayer = require "Player/player"
 local CDisplay = require "Player/display"
 

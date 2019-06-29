@@ -8,6 +8,9 @@ function CFSM:ctor( stateid )
 
     -- 当前的状态
     self._cur_state = nil
+
+    -- 新的状态
+    self._new_state = nil
 end
 
 -- 添加状态
@@ -23,17 +26,22 @@ function CFSM:ChangeToState( stateid )
         return false
     end
 
-    if self._cur_state ~= nil then
-        self._cur_state:OnLeave()
-    end
-
-    self._cur_state = state
-    self._cur_state:OnEnter()
+    self._new_state = state
     return true
 end
 
 -- tick
 function CFSM:Tick( deltatime )
+    if self._new_state ~= nil then
+        if self._cur_state ~= nil then
+            self._cur_state:OnLeave()
+        end
+
+        self._cur_state = self._new_state
+        self._cur_state:OnEnter()
+        self._new_state = nil
+    end
+
     if self._cur_state == nil then
         return
     end

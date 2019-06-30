@@ -1,53 +1,32 @@
 local ipairs = ipairs
 local setmetatable = setmetatable
 
-local _class={}
- 
-function class(classname,super)
-	local class_type={}
-	class_type.ctor=false
-    class_type.super=super
+function class(clsname, ...)
+	local cls = {_class_name = clsname}
 
-	class_type.new=function(...) 
-			local obj={}
-			do
-				local create
-				create = function(c,...)
-					if c.super then
-						create(c.super,...)
-					end
-					if c.ctor then
-						c.ctor(obj,...)
-					end
+	local args = {...}
+	if #args > 0 then
+		setmetatable(cls, {__index=
+		function(_, k)
+			for i, v in ipairs(args) do
+				local ret = v[k]
+				if ret ~= nil then
+					return ret
 				end
- 
-				create(class_type,...)
 			end
-            setmetatable(obj,{ __index=_class[class_type] })
-            obj._class_name = classname
-			return obj
-        end
-        
-	local vtbl={}
-	_class[class_type]=vtbl
- 
-	setmetatable(class_type,{__newindex=
-		function(t,k,v)
-			vtbl[k]=v
-		end
-	})
- 
-	if super then
-		setmetatable(vtbl,{__index=
-			function(t,k)
-				local ret=_class[super][k]
-				vtbl[k]=ret
-				return ret
-			end
-		})
+		end})
 	end
- 
-	return class_type
-end
 
+	cls.new = function(...)
+		local self = setmetatable({classtype=cls}, {__index=cls})
+
+		if cls.ctor then
+			cls.ctor(self, ...)
+		end
+
+		return self
+	end
+
+	return cls
+end
 

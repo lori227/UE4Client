@@ -1,20 +1,19 @@
-require "define"
 require "../Common/common"
 
-local CCheckVersionState = require("Login/CheckVersion/checkversionstate")
+local CCheckVersionState = require("Logic/Login/CheckVersion/checkversionstate")
 _fsm:AddState( CCheckVersionState.new( FSMStateEnum.CHECK_VERSION ) )
 
-local CInternalAuthState = require("Login/InternalAuth/internalauthstate")
+local CInternalAuthState = require("Logic/Login/InternalAuth/internalauthstate")
 _fsm:AddState( CInternalAuthState.new( FSMStateEnum.INTERNAL_AUTH ) )
 -------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------
-local CPlayer = require "Player/player"
+local CPlayer = require "Logic/Player/player"
 _player = CPlayer.new( "player" )
 
-local CDisplay = require "Player/display"
+local CDisplay = require "Logic/Player/display"
 _player:AddModule( CDisplay.new() )
 -------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------

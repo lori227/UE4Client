@@ -1,4 +1,5 @@
-_logic = require "include"
+require "define"
+_logic = require "Logic/logic"
 
 Main = {}
 
@@ -36,9 +37,10 @@ end
 function Main.Auth()
 	local channel = _protobuf:GetEnumId("KFMsg.ChannelEnum", "Internal" )
 	local request = { ["channel"] = channel, ["account"] = "lori227" }
-	local response = _http_client:PostJson( _define._auth_url, request )
+	local url = AuthUrl[4]._url;
+	local response = _http_client:PostJson( url, request )
 	if response == nil then
-		_log:LogError( "url=[".._define._auth_url.."] http failed!" )
+		_log:LogError( "url=["..url.."] http failed!" )
 		return
 	end
 

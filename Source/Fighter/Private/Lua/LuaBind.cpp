@@ -45,7 +45,29 @@ namespace slua
         }
     }
 
-    void FLuaBind::SaveDataToConfig( const char* section, const char* key, const char* data )
+    void FLuaBind::SaveInt( const char* section, const char* key, int32 data )
+    {
+        if ( GConfig == nullptr )
+        {
+            return;
+        }
+
+        GConfig->SetInt( ANSI_TO_TCHAR( section ), ANSI_TO_TCHAR( key ), data, GGameIni );
+        GConfig->Flush( false, GGameIni );
+    }
+
+    void FLuaBind::SaveDouble( const char* section, const char* key, double data )
+    {
+        if ( GConfig == nullptr )
+        {
+            return;
+        }
+
+        GConfig->SetDouble( ANSI_TO_TCHAR( section ), ANSI_TO_TCHAR( key ), data, GGameIni );
+        GConfig->Flush( false, GGameIni );
+    }
+
+    void FLuaBind::SaveString( const char* section, const char* key, const char* data )
     {
         if ( GConfig == nullptr )
         {
@@ -56,7 +78,31 @@ namespace slua
         GConfig->Flush( false, GGameIni );
     }
 
-    const char* FLuaBind::ReadDataFromConfig( const char* section, const char* key )
+    int32 FLuaBind::ReadInt( const char* section, const char* key )
+    {
+        if ( GConfig == nullptr )
+        {
+            return 0;
+        }
+
+        int32 data;
+        GConfig->GetInt( ANSI_TO_TCHAR( section ), ANSI_TO_TCHAR( key ), data, GGameIni );
+        return data;
+    }
+
+    double FLuaBind::ReadDouble( const char* section, const char* key )
+    {
+        if ( GConfig == nullptr )
+        {
+            return 0.0f;
+        }
+
+        double data;
+        GConfig->GetDouble( ANSI_TO_TCHAR( section ), ANSI_TO_TCHAR( key ), data, GGameIni );
+        return data;
+    }
+
+    const char* FLuaBind::ReadString( const char* section, const char* key )
     {
         if ( GConfig == nullptr )
         {
@@ -76,8 +122,12 @@ namespace slua
     DefLuaMethod( Log, &FLuaBind::LogContent )
     DefLuaMethod( Connect, &FLuaBind::Connect )
     DefLuaMethod( Send, &FLuaBind::Send )
-    DefLuaMethod( SaveData, &FLuaBind::SaveDataToConfig )
-    DefLuaMethod( ReadData, &FLuaBind::ReadDataFromConfig )
+    DefLuaMethod( SaveInt, &FLuaBind::SaveInt )
+    DefLuaMethod( SaveDouble, &FLuaBind::SaveDouble )
+    DefLuaMethod( SaveString, &FLuaBind::SaveString )
+    DefLuaMethod( ReadInt, &FLuaBind::ReadInt )
+    DefLuaMethod( ReadDouble, &FLuaBind::ReadDouble )
+    DefLuaMethod( ReadString, &FLuaBind::ReadString )
     EndDef( FLuaBind, &FLuaBind::Create )
 }
 

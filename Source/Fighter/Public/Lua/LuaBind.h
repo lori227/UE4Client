@@ -30,11 +30,15 @@ namespace slua
         // log
         static void LogContent( uint32 level, const char* content );
 
-        // save ini
-        static void SaveDataToConfig( const char* section, const char* key, const char* data );
+        // ±£¥Ê≈‰÷√
+        static void SaveInt( const char* section, const char* key, int32 data );
+        static void SaveDouble( const char* section, const char* key, double data );
+        static void SaveString( const char* section, const char* key, const char* data );
 
         // ∂¡»°≈‰÷√
-        static const char* ReadDataFromConfig( const char* section, const char* key );
+        static int32 ReadInt( const char* section, const char* key );
+        static double ReadDouble( const char* section, const char* key );
+        static const char* ReadString( const char* section, const char* key );
     };
 }
 

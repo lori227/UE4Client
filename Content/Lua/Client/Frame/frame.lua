@@ -1,0 +1,1 @@
+CUIBase = require("Logic/Frame/UI/uibase")

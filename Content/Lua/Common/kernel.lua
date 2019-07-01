@@ -362,7 +362,7 @@ local function GetRecordToalValue( data, id, name, maxvalue )
     return totalvalue
 end
 
-local function CheckElementEnouth( data, elementvalue )
+local function CheckElementEnough( data, elementvalue )
     -- int32/uint32/int64/uint64
     local datatype = type( data )
     if datatype == "number" then
@@ -383,7 +383,7 @@ local function CheckElementEnouth( data, elementvalue )
                     return false
                 end
 
-                local result = CheckElementEnouth( childdata, objectdata )
+                local result = CheckElementEnough( childdata, objectdata )
                 if result == false then
                     return false
                 end
@@ -394,7 +394,7 @@ local function CheckElementEnouth( data, elementvalue )
                 -- 获得总数量
                 if objectname ~= "id" then
                     local totalcount = GetRecordToalValue( data, tonumber(id), objectname, tonumber(objectdata) )
-                    local result = CheckElementEnouth( totalcount, objectdata )
+                    local result = CheckElementEnough( totalcount, objectdata )
                     if result == false then
                         return false
                     end
@@ -423,7 +423,7 @@ function CKernel:CheckElement( strelement )
                 return false, name
             end
 
-            local ok = CheckElementEnouth( data, elementvalue )
+            local ok = CheckElementEnough( data, elementvalue )
             if ok == false then
                 return false, name
             end

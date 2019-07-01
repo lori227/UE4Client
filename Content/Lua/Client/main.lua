@@ -32,6 +32,19 @@ end
 
 function Main.Startup( id, value )
 	_fsm:ChangeToState( FSMStateEnum.CHECK_VERSION )
+
+	local data = {}
+	data.id = 1
+	local data_ = {}
+	data_[1] = data
+ 	_player._data["item"]= data_
+	_player:SetRecordValue( "item", 1, "count", 100 )
+	local ok, name = _player:CheckElement( "[{\"item\":{\"id\":\"1\",\"count\":\"200\"}}]" )
+	if ok == true then
+		print( "money ok")
+	else
+		print( name .." false" )
+	end
 end
 
 function Main.Auth()

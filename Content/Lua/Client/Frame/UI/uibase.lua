@@ -4,19 +4,20 @@ function CUIBase:ctor( ... )
     
 end
 
-function CUIBase:Init( ... )
-end
-
-function CUIBase.OnInit( ... )
+function CUIBase:OnCreate( ... )
 
 end
 
-function CUIBase.Destroy( ... )
-    self:OnDestroyed()
-end
-
-function CUIBase.OnDestroyed( ... )
+function CUIBase:OnDestroy( ... )
     
+end
+
+function CUIBase:OnShow( ... )
+
+end
+
+function CUIBase:OnHide( ... )
+
 end
 
 return CUIBase

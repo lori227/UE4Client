@@ -360,11 +360,11 @@ function CJson:ctor()
     self._version = "0.1.1"
 end
 
-function CJson:encode(val)
+function CJson:Encode(val)
   return ( encode(val) )
 end
 
-function CJson:decode(str)
+function CJson:Decode(str)
   if type(str) ~= "string" then
     error("expected argument of type string, got " .. type(str))
   end

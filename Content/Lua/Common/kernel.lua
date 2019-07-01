@@ -342,4 +342,98 @@ function CKernel:SetRecordValue( parentname, key, childname, value )
     childdata[ childname ] = value
 end
 
+-------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+local function GetRecordToalValue( data, id, name, maxvalue )
+    local totalvalue = 0
+    for _, v in pairs( data ) do
+        local dataid = v[ "id" ]
+        if dataid == id then
+            local value = v[ name ]
+            if value ~= nil then
+                totalvalue = totalvalue + value
+                if totalvalue >= maxvalue then
+                    break
+                end
+            end
+        end
+    end
+
+    return totalvalue
+end
+
+local function CheckElementEnouth( data, elementvalue )
+    -- int32/uint32/int64/uint64
+    local datatype = type( data )
+    if datatype == "number" then
+        local value = tonumber( elementvalue )
+        if data < value then
+            return false
+        end
+    end
+
+    -- object/record
+    if datatype == "table" then
+        local id = elementvalue[ "id" ]
+        if id == nil then
+            -- object
+            for objectname, objectdata in pairs( elementvalue ) do
+                local childdata = data[ objectname ]
+                if childdata == nil then
+                    return false
+                end
+
+                local result = CheckElementEnouth( childdata, objectdata )
+                if result == false then
+                    return false
+                end
+            end
+        else
+            -- record
+            for objectname, objectdata in pairs( elementvalue ) do
+                -- 获得总数量
+                if objectname ~= "id" then
+                    local totalcount = GetRecordToalValue( data, tonumber(id), objectname, tonumber(objectdata) )
+                    local result = CheckElementEnouth( totalcount, objectdata )
+                    if result == false then
+                        return false
+                    end
+                end
+            end
+        end
+    end
+
+    return true
+end
+
+
+-- 判断属性
+function CKernel:CheckElement( strelement )
+    local elementdatas = _json:Decode( strelement )
+    if elementdatas == nil then
+        _log:LogError( "element=["..strelement.."] error!" )
+        return false, "parse"
+    end
+
+    -- 遍历数据
+    for _, elementdata in pairs( elementdatas ) do
+        for name, elementvalue in pairs( elementdata ) do
+            local data = self._data[ name ]
+            if data == nil then
+                return false, name
+            end
+
+            local ok = CheckElementEnouth( data, elementvalue )
+            if ok == false then
+                return false, name
+            end
+        end
+    end
+
+    return true
+end
+---------------------------------------------------------
+
+
+
 return CKernel

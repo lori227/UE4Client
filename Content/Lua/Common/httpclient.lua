@@ -43,7 +43,7 @@ function CHttpClient:PostData( url, senddata )
 end
 
 function CHttpClient:PostJson( url, sendjson )
-    local senddata = _json:encode( sendjson )
+    local senddata = _json:Encode( sendjson )
     if senddata == nil then
         _log:LogError( "url=["..url.."] json encode failed!" )
         return nil
@@ -54,7 +54,7 @@ function CHttpClient:PostJson( url, sendjson )
         return nil
     end
 
-    return _json:decode( response )
+    return _json:Decode( response )
 end
 
 function CHttpClient:GetData( url, senddata )
@@ -62,7 +62,7 @@ function CHttpClient:GetData( url, senddata )
 end
 
 function CHttpClient:GetJson( url, sendjson )
-    local senddata = _json:encode( sendjson )
+    local senddata = _json:Encode( sendjson )
     if senddata == nil then
         _log:LogError( "url=["..url.."] json encode failed!" )
         return nil
@@ -73,7 +73,7 @@ function CHttpClient:GetJson( url, sendjson )
         return nil
     end
 
-    return _json:decode( response )
+    return _json:Decode( response )
 end
 
 return CHttpClient

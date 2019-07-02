@@ -1,4 +1,4 @@
-local pbc = require "../Common/pbc"
+local pbc = require "../common/pbc"
 local CProtobuf = class( "CProtobuf" )
 
 -- 初始化协议

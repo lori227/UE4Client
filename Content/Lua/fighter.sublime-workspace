@@ -7,32 +7,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "Client/Logic/Login/InternalAuth/internalauthui.lua",
-			"settings":
-			{
-				"buffer_size": 328,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Client/Frame/UI/uimanage.lua",
-			"settings":
-			{
-				"buffer_size": 1364,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Client/Logic/Login/InternalAuth/internalauthstate.lua",
-			"settings":
-			{
-				"buffer_size": 411,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -66,11 +40,7 @@
 	},
 	"expanded_folders":
 	[
-		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua",
-		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/LuaClient",
-		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/LuaClient/configs",
-		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/LuaClient/configs/herorace",
-		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/LuaClient/configs/recruitdivisor"
+		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua"
 	],
 	"file_history":
 	[
@@ -102,44 +72,6 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"\n                        },",
-			"\n                            \"",
-			"{\n                        \"",
-			"\n            }, ",
-			"\n                }",
-			"\n                    \"",
-			"\n                \"",
-			"\n                    },",
-			"\n                        }",
-			" {\n                            ",
-			"\n                        \"",
-			"\n                    }, ",
-			"\n                        }",
-			"{\n                            ",
-			"\n                        \"",
-			"{\n                        \"caption\"",
-			" \t\t\t\t\"args\"",
-			" { \t\t\t\t\t\t",
-			" \t\t\t\t}, \t\t\t\t",
-			" \t\t},",
-			" \t\t{",
-			" \n",
-			"\n}, ",
-			"\n\t\t\t\t\t\t",
-			"  ",
-			"\n\t\t\t\t\t\t\t\t",
-			"  }, ",
-			"\n }, ",
-			"\n",
-			"\n ",
-			"\n     ",
-			"            ",
-			"\n            ",
-			"set file",
-			"全部",
-			"上一",
-			">NUL 2>NUL",
-			"tvfrdt"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -147,35 +79,6 @@
 		"regex": false,
 		"replace_history":
 		[
-			" },\"",
-			" \"",
-			"{ \"",
-			" }, ",
-			" }",
-			" \"",
-			" },",
-			" }",
-			" { ",
-			" \"",
-			" }, ",
-			" }",
-			"{ ",
-			" \"",
-			"{ \"caption\"",
-			"\t\"args\"",
-			" { ",
-			"\t}, ",
-			"\t},",
-			"\n{",
-			"\n",
-			" }, \n",
-			" \n",
-			"\n",
-			" ",
-			" }, ",
-			"  }, ",
-			" ",
-			""
 		],
 		"reverse": false,
 		"show_context": true,
@@ -186,101 +89,8 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "Client/Logic/Login/InternalAuth/internalauthui.lua",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 328,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								31,
-								31
-							]
-						],
-						"settings":
-						{
-							"is_init_dirty_state": false,
-							"origin_encoding": "ASCII",
-							"syntax": "Packages/Lua/Lua.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "Client/Frame/UI/uimanage.lua",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1364,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								430,
-								430
-							]
-						],
-						"settings":
-						{
-							"is_init_dirty_state": false,
-							"origin_encoding": "UTF-8",
-							"syntax": "Packages/Lua/Lua.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 324.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "Client/Logic/Login/InternalAuth/internalauthstate.lua",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 411,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								411,
-								411
-							]
-						],
-						"settings":
-						{
-							"is_init_dirty_state": false,
-							"origin_encoding": "ASCII",
-							"syntax": "Packages/Lua/Lua.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],

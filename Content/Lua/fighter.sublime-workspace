@@ -11,7 +11,7 @@
 			"file": "Client/Logic/Login/InternalAuth/internalauthui.lua",
 			"settings":
 			{
-				"buffer_size": 326,
+				"buffer_size": 328,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -67,13 +67,10 @@
 	"expanded_folders":
 	[
 		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua",
-		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/Client",
-		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/Client/Frame",
-		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/Client/Frame/UI",
-		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/Client/Logic",
-		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/Client/Logic/Login",
-		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/Client/Logic/Login/CheckVersion",
-		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/Client/Logic/Login/InternalAuth"
+		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/LuaClient",
+		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/LuaClient/configs",
+		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/LuaClient/configs/herorace",
+		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/LuaClient/configs/recruitdivisor"
 	],
 	"file_history":
 	[
@@ -189,7 +186,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -198,19 +195,20 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 326,
+						"buffer_size": 328,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								197,
-								197
+								31,
+								31
 							]
 						],
 						"settings":
 						{
+							"is_init_dirty_state": false,
 							"origin_encoding": "ASCII",
 							"syntax": "Packages/Lua/Lua.sublime-syntax"
 						},
@@ -218,7 +216,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -234,12 +232,14 @@
 						"selection":
 						[
 							[
-								1341,
-								1341
+								430,
+								430
 							]
 						],
 						"settings":
 						{
+							"is_init_dirty_state": false,
+							"origin_encoding": "UTF-8",
 							"syntax": "Packages/Lua/Lua.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
@@ -248,7 +248,7 @@
 						"translation.y": 324.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -264,12 +264,13 @@
 						"selection":
 						[
 							[
-								0,
-								0
+								411,
+								411
 							]
 						],
 						"settings":
 						{
+							"is_init_dirty_state": false,
 							"origin_encoding": "ASCII",
 							"syntax": "Packages/Lua/Lua.sublime-syntax"
 						},
@@ -277,7 +278,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

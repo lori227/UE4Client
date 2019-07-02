@@ -48,11 +48,11 @@ function CUIManage:Show( uiclass, zorder )
     self._show_ui = ui
 
     ui:Show( zorder )
-    print( "CUIManage.Show...".. uiclass._class_name .. "...order...".. zorder )
+    print( uiclass._class_name .. "...show...order...".. zorder )
 end
 
 function CUIManage:Hide( uiclass )
-    print( "CUIManage.Hide...".. uiclass._class_name )
+    print( uiclass._class_name .. "...hide" )
     
     local ui = self._show_list[ uiclass._class_name ]
     if ui == nil then
@@ -65,6 +65,5 @@ function CUIManage:Hide( uiclass )
     ui:Hide()
     self._show_list[ uiclass._class_name ] = nil
 end
-
 
 return CUIManage

@@ -7,8 +7,6 @@ function CUIPanle:ctor( ... )
 end
 
 function CUIPanle:Show( zorder )
-    print("CUIPanle.Show...")
-    
 	if self._widget ~= nil then
 		if zorder == nil then
 			zorder = self._zorder
@@ -20,8 +18,6 @@ function CUIPanle:Show( zorder )
 end
 
 function CUIPanle.Hide(self)
-    print("CUIPanle.Hide...")
-    
 	if self._widget ~= nil then
         self:OnHide()
         self._widget:RemoveFromViewport()

@@ -10,19 +10,19 @@ function CUIWidget:ctor()
 end
 
 function CUIWidget:OnCreate( ... )
-	print( "CUIWidget -->OnCreate" )
+	print( self._class_name .. "-->OnCreate" )
     CUIBase.OnCreate( self, ... )
 end
 
 function CUIWidget:OnDestroy( ... )
-	print("CUIWidget -->OnDestroy")
+	print( self._class_name .. "-->OnDestroy")
 	self._widget = nil
 
     CUIBase.OnDestroy( self, ... )
 end
 
 function CUIWidget:OnCreateUI()
-	print("CUIWidget -->OnCreateUI")
+	print( self._class_name .. "-->OnCreateUI")
     
     if self._widget ~= nil then
 		if self._widget.OnConstruct ~= nil then
@@ -35,7 +35,7 @@ function CUIWidget:OnCreateUI()
 end
 
 function CUIWidget:OnDestroyedUI()
-    print("CUIWidget -->OnDestroyedUI")
+    print( self._class_name .. "-->OnDestroyedUI")
     
 	if self._widget ~= nil then
 		if self._widget.OnConstruct ~= nil then

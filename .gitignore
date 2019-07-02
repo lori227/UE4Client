@@ -36,3 +36,5 @@ Debug
 *.ipch
 Fighter.xcworkspace/xcuserdata/lori.xcuserdatad/IDEFindNavigatorScopes.plist
 Fighter.xcworkspace/xcuserdata/lori.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+Content/Lua/fighter.sublime-project
+Content/Lua/fighter.sublime-workspace

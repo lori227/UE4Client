@@ -1,5 +1,5 @@
 require "define"
-_logic = require "Logic/logic"
+_logic = require "logic/logic"
 
 Main = {}
 

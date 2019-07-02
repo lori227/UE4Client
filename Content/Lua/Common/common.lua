@@ -1,43 +1,43 @@
 print( _VERSION )
 
-require "../Common/class"
-require "../Common/table"
+require "../common/class"
+require "../common/table"
 
-local CJson = require "../Common/json"
+local CJson = require "../common/json"
 _json = CJson.new()
 
-local CUtility = require "../Common/utility"
+local CUtility = require "../common/utility"
 _utility = CUtility.new()
 
-local CCoroutine = require "../Common/coroutine"
+local CCoroutine = require "../common/coroutine"
 _coroutine = CCoroutine.new()
 
-local CMessage = require "../Common/message"
+local CMessage = require "../common/message"
 _message = CMessage.new()
 
-local CNetClient = require "../Common/netclient"
+local CNetClient = require "../common/netclient"
 _net_client = CNetClient.new()
 
-CKernel = require "../Common/kernel"
+CKernel = require "../common/kernel"
 
-local CLog = require "../Common/log"
+local CLog = require "../common/log"
 _log = CLog.new()
 
-local CProtobuf = require "../Common/protobuf"
+local CProtobuf = require "../common/protobuf"
 
-local CHttpClient = require "../Common/httpclient"
+local CHttpClient = require "../common/httpclient"
 _http_client = CHttpClient.new()
 
-local CProtobuf = require "../Common/protobuf"
+local CProtobuf = require "../common/protobuf"
 _protobuf = CProtobuf.new()
 
-local CTimer = require "../Common/timer"
+local CTimer = require "../common/timer"
 _timer = CTimer.new()
 
-local CEvent = require "../Common/event"
+local CEvent = require "../common/event"
 _event = CEvent.new()
 
-local CFSM = require "../Common/fsm/fsm"
+local CFSM = require "../common/fsm/fsm"
 _fsm = CFSM.new()
 
 

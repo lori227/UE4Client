@@ -11,8 +11,8 @@ UIViewZOrderEnum =
     Top = 10000 * 100,      --最高层级
 }
 
-CUIBase = require( "Frame/UI/uibase" )
-CUIWidget = require( "Frame/UI/uiwidget" )
-CUIPanle = require( "Frame/UI/uipanle" )
-local CUIManage = require( "Frame/UI/uimanage" )
+CUIBase = require( "frame/ui/uibase" )
+CUIWidget = require( "frame/ui/uiwidget" )
+CUIPanle = require( "frame/ui/uipanle" )
+local CUIManage = require( "frame/ui/uimanage" )
 _ui_manage = CUIManage.new()

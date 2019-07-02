@@ -1,12 +1,3 @@
--- 认证服务器地址
-AuthUrl = 
-{
-    { _name = "本地测试服", _url = "http://127.0.0.1:7001/auth" },
-    { _name = "内网研发服", _url = "http://192.168.2.31:7001/auth" },
-    { _name = "内网测试服", _url = "http://192.168.2.30:7001/auth" },
-    { _name = "外网测试服", _url = "http://139.196.33.35:7001/auth" },
-}
-
 -- 时间枚举
 EventEnum = 
 {
@@ -37,4 +28,16 @@ ChannelEnum =
 }
 
 _define = {}
-_define._channel = ChannelEnum.INTERNAL        -- 渠道id
+
+ -- 渠道id
+_define._channel = ChannelEnum.INTERNAL       
+
+-- 认证服务器地址
+_define._auth_url = 
+{
+    { _name = "本地测试服", _url = "http://127.0.0.1:7001/auth" },
+    { _name = "内网研发服", _url = "http://192.168.2.31:7001/auth" },
+    { _name = "内网测试服", _url = "http://192.168.2.30:7001/auth" },
+    { _name = "外网测试服", _url = "http://139.196.33.35:7001/auth" },
+}
+

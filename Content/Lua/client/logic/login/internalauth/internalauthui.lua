@@ -25,12 +25,12 @@ function CUIInternalAuth:OnShow()
 	end
 
 	self._combo_url:ClearOptions()
-	for _, v in pairs( AuthUrl ) do
+	for _, v in pairs( _define._auth_url ) do
 		self._combo_url:AddOption( v._name .. " | " .. v._url )
 	end
 
 	local selectindex = FLuaBind.ReadInt( "login", "url" )
-	if selectindex == nil or selectindex > #AuthUrl then
+	if selectindex == nil or selectindex > #_define._auth_url then
 		selectindex = 0
 	end
 
@@ -53,7 +53,7 @@ function CUIInternalAuth:OnClickButtonAuth()
 	end 
 	FLuaBind.SaveString( "login", "url", selectindex )
 
-	local url = AuthUrl[ selectindex + 1 ]._url
+	local url = _define._auth_url[ selectindex + 1 ]._url
 	print( "account...".. account .."...url...".. url )
 	
 	-- 发送验证消息

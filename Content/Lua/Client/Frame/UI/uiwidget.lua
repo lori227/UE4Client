@@ -32,6 +32,8 @@ function CUIWidget:OnCreateUI()
 	        self._widget.OnDestruct:Add( self._cpp_destroy )
 	    end
 	end
+
+	self:OnCreate()
 end
 
 function CUIWidget:OnDestroyedUI()
@@ -45,6 +47,8 @@ function CUIWidget:OnDestroyedUI()
 	        self._widget.OnDestruct:Remove( self._cpp_destroy )
 	    end
 	end
+
+	self:OnDestroy()
 end
 
 function CUIWidget:GetUserWidget()

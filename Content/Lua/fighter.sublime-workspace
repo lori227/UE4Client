@@ -1,0 +1,368 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "Client/Logic/Login/InternalAuth/internalauthui.lua",
+			"settings":
+			{
+				"buffer_size": 326,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Client/Frame/UI/uimanage.lua",
+			"settings":
+			{
+				"buffer_size": 1364,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Client/Logic/Login/InternalAuth/internalauthstate.lua",
+			"settings":
+			{
+				"buffer_size": 411,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua",
+		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/Client",
+		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/Client/Frame",
+		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/Client/Frame/UI",
+		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/Client/Logic",
+		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/Client/Logic/Login",
+		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/Client/Logic/Login/CheckVersion",
+		"/D/Work/Project/Chess/trunk/UE4Client/Content/Lua/Client/Logic/Login/InternalAuth"
+	],
+	"file_history":
+	[
+		"/E/Program Files (x86)/SublimeText.3.2.1.3207/Data/Packages/User/lua.sublime-build",
+		"/G/Sublime Text/Data/Packages/Default/Main.sublime-menu",
+		"/C/Users/Zero/Desktop/Main.sublime-menu",
+		"/G/Sublime Text/Data/Packages/ConvertToUTF8/Main.sublime-menu",
+		"/G/Sublime Text/Data/Packages/Simplified Chinese/Main.sublime-menu",
+		"/D/YYSpeak/!绿化.bat",
+		"/C/Users/Zero/Desktop/绿化卸载.bat",
+		"/D/Soft/Internet Download Manager/!绿化卸载1.bat",
+		"/D/Soft/Internet Download Manager/!绿化卸载.bat",
+		"/C/Users/Zero/Desktop/111.reg",
+		"/G/MobaXterm/Slash/RemoteFiles/330784_3_0/readme.txt"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"\n                        },",
+			"\n                            \"",
+			"{\n                        \"",
+			"\n            }, ",
+			"\n                }",
+			"\n                    \"",
+			"\n                \"",
+			"\n                    },",
+			"\n                        }",
+			" {\n                            ",
+			"\n                        \"",
+			"\n                    }, ",
+			"\n                        }",
+			"{\n                            ",
+			"\n                        \"",
+			"{\n                        \"caption\"",
+			" \t\t\t\t\"args\"",
+			" { \t\t\t\t\t\t",
+			" \t\t\t\t}, \t\t\t\t",
+			" \t\t},",
+			" \t\t{",
+			" \n",
+			"\n}, ",
+			"\n\t\t\t\t\t\t",
+			"  ",
+			"\n\t\t\t\t\t\t\t\t",
+			"  }, ",
+			"\n }, ",
+			"\n",
+			"\n ",
+			"\n     ",
+			"            ",
+			"\n            ",
+			"set file",
+			"全部",
+			"上一",
+			">NUL 2>NUL",
+			"tvfrdt"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			" },\"",
+			" \"",
+			"{ \"",
+			" }, ",
+			" }",
+			" \"",
+			" },",
+			" }",
+			" { ",
+			" \"",
+			" }, ",
+			" }",
+			"{ ",
+			" \"",
+			"{ \"caption\"",
+			"\t\"args\"",
+			" { ",
+			"\t}, ",
+			"\t},",
+			"\n{",
+			"\n",
+			" }, \n",
+			" \n",
+			"\n",
+			" ",
+			" }, ",
+			"  }, ",
+			" ",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Client/Logic/Login/InternalAuth/internalauthui.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 326,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								197,
+								197
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/Lua/Lua.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Client/Frame/UI/uimanage.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1364,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1341,
+								1341
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 324.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Client/Logic/Login/InternalAuth/internalauthstate.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 411,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/Lua/Lua.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Lua/Lua.sublime-build",
+	"project": "fighter.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 248.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

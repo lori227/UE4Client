@@ -55,6 +55,7 @@ function CUIInternalAuth:OnClickButtonAuth()
 
 	local url = AuthUrl[ selectindex + 1 ]._url
 	print( "account...".. account .."...url...".. url )
+	
 	-- 发送验证消息
 
 end

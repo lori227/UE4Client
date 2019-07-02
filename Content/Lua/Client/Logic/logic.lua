@@ -1,4 +1,5 @@
 require "../Common/common"
+require( "Frame/frame" )
 
 local CCheckVersionState = require("Logic/Login/CheckVersion/checkversionstate")
 _fsm:AddState( CCheckVersionState.new( FSMStateEnum.CHECK_VERSION ) )

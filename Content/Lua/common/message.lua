@@ -6,7 +6,12 @@ function CMessage:ctor()
 end
 
 -- 添加消息处理
-function CMessage:Add( msgid, msgname, cbfunc )
+function CMessage:Add( msgenum, msgname, cbfunc )
+    local msgid = _protobuf:GetMsgId( msgenum )
+    if msgid == nil then
+        return
+    end
+
     if self._functions[ msgid ] ~= nil then
         _log:LogError( "msgid = "..msgid.." already exist!" )
         return

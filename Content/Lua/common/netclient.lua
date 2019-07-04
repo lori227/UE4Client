@@ -59,7 +59,6 @@ end
 function CNetClient:Send( msgenum, msgname, msgtable )
     local msgid = _protobuf:GetMsgId( msgenum )
     if msgid == nil then
-        _log:LogError( "msgname=["..msgname.."] msgid is nil!" )
         return false
     end
 

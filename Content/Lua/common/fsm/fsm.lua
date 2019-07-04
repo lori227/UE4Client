@@ -45,9 +45,10 @@ function CFSM:Tick( deltatime )
             self._cur_state:OnLeave()
         end
 
-        self._new_state:OnEnter()
-        self._cur_state = self._new_state
+        local newstate = self._new_state
         self._new_state = nil
+        self._cur_state = newstate
+        newstate:OnEnter()
     end
 
     if self._cur_state == nil then

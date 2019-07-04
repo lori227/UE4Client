@@ -16,3 +16,9 @@ CUIWidget = require( "frame/ui/uiwidget" )
 CUIPanle = require( "frame/ui/uipanle" )
 local CUIManage = require( "frame/ui/uimanage" )
 _ui_manage = CUIManage.new()
+
+-------------------------------------------------
+CNotify = require( "frame/notify/notify" )
+local CNotifyManage = require( "frame/notify/notifymanage" )
+_notify_manage = CNotifyManage.new()
+

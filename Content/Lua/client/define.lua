@@ -13,10 +13,13 @@ FSMStateEnum =
 {
     CHECK_VERSION = "version",      -- 检查版本
     BATCH_UPDATE = "batch",         -- 补丁更新
+    SELECT_CHANNEL = "channel",     -- 选择渠道
     INTERNAL_AUTH = "internal",     -- 内部验证
     STEAM_AUTH = "steam",           -- 内部验证
     WEIXIN_AUTH = "weixin",         -- 内部验证
+    AUTH_SWITCH = "switch",         -- 认证跳转
     LOGIN_GAME = "login",           -- 登陆游戏
+    SELECT_ZONE = "zone",           -- 选择小区
 }
 
 -- 渠道定义
@@ -27,10 +30,22 @@ ChannelEnum =
     WEIXIN   = 3,        -- 微信
 }
 
+-- 通知定义
+NotifyEnum = 
+{
+    AUTH = 1,       -- 账号认证
+}
+
 _define = {}
 
- -- 渠道id
-_define._channel = ChannelEnum.INTERNAL       
+-- 渠道id
+_define._channel = ChannelEnum.INTERNAL   
+
+-- 是否有选服界面     
+_define._have_server_list = false
+
+-- 是否需要断线重脸
+_define._need_reconnect = true
 
 -- 认证服务器地址
 _define._auth_url = 

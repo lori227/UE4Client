@@ -14,8 +14,16 @@ function CFSM:ctor( stateid )
 end
 
 -- 添加状态
-function CFSM:AddState( state )
-    self._states[ state._state_id ] = state
+function CFSM:AddState( stateid, state )
+    local object = self._states[ stateid ]
+    if object ~= nil then
+        print( "state..."..stateid.."...name..."..state._class_name.."...already exist!" )
+        return
+    end
+
+    object = state.new( stateid )
+    object:OnInit()
+    self._states[ stateid ] = object
 end
 
 -- 改变状态

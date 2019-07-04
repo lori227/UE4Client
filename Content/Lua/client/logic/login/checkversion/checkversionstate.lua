@@ -6,9 +6,7 @@ end
 
 
 function CCheckVersionState:OnTick( deltatime )
-	if _define._channel == ChannelEnum.INTERNAL then
-		_fsm:ChangeToState( FSMStateEnum.INTERNAL_AUTH )
-	end
+	_fsm:ChangeToState( FSMStateEnum.SELECT_CHANNEL )
 end
 
 return CCheckVersionState

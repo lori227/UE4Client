@@ -34,47 +34,12 @@ function Main.Startup( id, value )
 	_fsm:ChangeToState( FSMStateEnum.CHECK_VERSION )
 end
 
-function Main.Auth()
-	local channel = _protobuf:GetEnumId("KFMsg.ChannelEnum", "Internal" )
-	local request = { ["channel"] = channel, ["account"] = "lori227" }
-	local url = AuthUrl[4]._url;
-	local response = _http_client:PostJson( url, request )
-	if response == nil then
-		_log:LogError( "url=["..url.."] http failed!" )
-		return
-	end
-
-	if response.retcode ~= 1 then
-		_display:ShowResult( response.retcode )
-		return
-	end
-
-	Main._token = response.token
-	Main._account_id = response.accountid
-
-	-- connect
-	local zone = response["zone"]
-	_net_client:Connect( zone.zoneid, zone.ip, zone.port )
-end
-
 function Main.Tick( deltatime )
 	-- 状态机
 	_fsm:Tick( deltatime )
 
 	-- 定时器逻辑
 	_timer:Tick( deltatime )
-end
-
-function Main.OnConnect( id, code )
-
-	local data = 
-	{
-	   token = Main._token,
-	   accountid = Main._account_id,
-	   version = "0.0.0.0"
-	}
-	
-    _net_client:Send( 100, "KFMsg.MsgLoginReq", data )
 end
 ------------------------------------------------------------------
 ------------------------------------------------------------------

@@ -20,4 +20,8 @@ function CUIBase:OnHide( ... )
 
 end
 
+function CUIBase:SendNotify( notifyid, notifydata )
+	_notify_manage:CallNotify( notifyid, notifydata )
+end
+
 return CUIBase

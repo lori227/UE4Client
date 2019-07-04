@@ -53,11 +53,15 @@ function CUIInternalAuth:OnClickButtonAuth()
 	end 
 	FLuaBind.SaveString( "login", "url", selectindex )
 
-	local url = _define._auth_url[ selectindex + 1 ]._url
-	print( "account...".. account .."...url...".. url )
+	local notify = {}
+	notify.data = {}
+	notify.data.account = account
+	notify.data.channel = ChannelEnum.INTERNAL
+	notify.url = _define._auth_url[ selectindex + 1 ]._url
+	print( "account...".. notify.data.account .."...url...".. notify.url )
 	
 	-- 发送验证消息
-
+	self:SendNotify( NotifyEnum.AUTH, notify )
 end
 
 return CUIInternalAuth

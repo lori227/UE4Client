@@ -4,6 +4,11 @@ function CFSMState:ctor( stateid )
     self._state_id = stateid
 end
 
+-- 初始化
+function CFSMState:OnInit()
+	-- body
+end
+
 -- 进入状态
 function CFSMState:OnEnter()
     print( "EnterState...".. self._state_id )

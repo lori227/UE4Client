@@ -56,7 +56,8 @@ function CNetClient:Connect( id, ip, port )
 end
 
 -- 删除消息处理
-function CNetClient:Send( msgid, msgname, msgtable )
+function CNetClient:Send( msgenum, msgname, msgtable )
+    local msgid = _protobuf:GetMsgId( msgenum )
     if msgid == nil then
         _log:LogError( "msgname=["..msgname.."] msgid is nil!" )
         return false

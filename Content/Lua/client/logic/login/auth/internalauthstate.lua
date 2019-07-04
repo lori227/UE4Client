@@ -1,4 +1,4 @@
-local CUIInternalAuth = require( "logic/login/internalauth/internalauthui" )
+local CUIInternalAuth = require( "logic/login/auth/internalauthui" )
 local CInternalAuthState = class( "CInternalAuthState", CFSMState )
 
 function CInternalAuthState:ctor( stateid )

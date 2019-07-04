@@ -38,21 +38,24 @@ NotifyEnum =
 
 _define = {}
 
--- 渠道id
-_define._channel = ChannelEnum.INTERNAL   
-
 -- 是否有选服界面     
 _define._have_server_list = false
 
 -- 是否需要断线重脸
 _define._need_reconnect = true
 
--- 认证服务器地址
-_define._auth_url = 
+-- 渠道id
+_define._channel = ChannelEnum.INTERNAL   
+
+-- 渠道数据
+_define._channel_data = 
 {
-    { _name = "本地测试服", _url = "http://127.0.0.1:7001/auth" },
-    { _name = "内网研发服", _url = "http://192.168.2.31:7001/auth" },
-    { _name = "内网测试服", _url = "http://192.168.2.30:7001/auth" },
-    { _name = "外网测试服", _url = "http://139.196.33.35:7001/auth" },
+    [ ChannelEnum.INTERNAL ] =
+    {
+        { _name = "本地测试服", _url = "http://127.0.0.1:7001/auth" },
+        { _name = "内网研发服", _url = "http://192.168.2.31:7001/auth" },
+        { _name = "内网测试服", _url = "http://192.168.2.30:7001/auth" },
+        { _name = "外网测试服", _url = "http://139.196.33.35:7001/auth" },
+    }
 }
 

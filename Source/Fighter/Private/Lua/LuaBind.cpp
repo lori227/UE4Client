@@ -17,7 +17,12 @@ namespace slua
     {
         return FPaths::ProjectContentDir();
     }
-
+    
+    uint64 FLuaBind::GetTime()
+    {
+        return ( uint64 )FPlatformTime::Seconds();
+    }
+    
     void FLuaBind::Connect( uint64 id, const char* ip, uint32 port )
     {
         FString strip = UTF8_TO_TCHAR( ip );
@@ -119,6 +124,7 @@ namespace slua
     //////////////////////////////////////////////////////////////////////////////
     DefLuaClass( FLuaBind )
     DefLuaMethod( ContentDir, &FLuaBind::ProjectContentDir )
+    DefLuaMethod( GetTime, &FLuaBind::GetTime )
     DefLuaMethod( Log, &FLuaBind::LogContent )
     DefLuaMethod( Connect, &FLuaBind::Connect )
     DefLuaMethod( Send, &FLuaBind::Send )

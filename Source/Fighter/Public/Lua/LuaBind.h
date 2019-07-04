@@ -20,6 +20,9 @@ namespace slua
 
         // content path
         static FString ProjectContentDir();
+        
+        // time
+        static uint64 GetTime();
 
         // net connect
         static void Connect( uint64 id, const char* ip, uint32 port );
@@ -29,13 +32,13 @@ namespace slua
 
         // log
         static void LogContent( uint32 level, const char* content );
-
-        // ±£¥Ê≈‰÷√
+        
+        // save
         static void SaveInt( const char* section, const char* key, int32 data );
         static void SaveDouble( const char* section, const char* key, double data );
         static void SaveString( const char* section, const char* key, const char* data );
 
-        // ∂¡»°≈‰÷√
+        // read
         static int32 ReadInt( const char* section, const char* key );
         static double ReadDouble( const char* section, const char* key );
         static const char* ReadString( const char* section, const char* key );

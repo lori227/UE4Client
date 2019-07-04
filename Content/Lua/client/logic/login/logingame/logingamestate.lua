@@ -40,7 +40,7 @@ function CLoginGameState:OnNetFailed( id, code )
     print( "connect failed count ...".. self._connect_failed_count )
 
     if self._connect_failed_count >= 3 then
-		if _define._have_server_list == 0 then
+		if _define._have_server_list == false then
 			_fsm:ChangeToState( FSMStateEnum.SELECT_CHANNEL )
 		else
 			_fsm:ChangeToState( FSMStateEnum.SELECT_ZONE )

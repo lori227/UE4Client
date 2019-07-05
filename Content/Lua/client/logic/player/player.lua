@@ -35,7 +35,6 @@ function CPlayer:OnEnterGame( msg )
     for _, entercb in pairs( self._enter_cb_list ) do
         entercb()
     end
-    table.print( self._data )
     -- 进入主界面状态
     _fsm:ChangeToState( FSMStateEnum.PLAYER_MAIN )
 end

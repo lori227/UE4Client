@@ -1,4 +1,5 @@
 require "define"
+require( "field" )
 _logic = require "logic/logic"
 
 Main = {}

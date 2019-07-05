@@ -25,12 +25,9 @@ end
 
 function CPlayer:OnEnterGame( msg )
     print( "login game ok ..." )
-    self:InitData( msg.playerid, msg.playerdata )
 
-print( FLuaBind.GetTime())
-print(msg.servertime )
-
-    -- 保存服务器时间
+    -- 初始化数据
+    self:InitData( msg.playerid, msg.playerdata )    
     self._time_difference = FLuaBind.GetTime() - msg.servertime
     print(self._time_difference)
 
@@ -38,6 +35,9 @@ print(msg.servertime )
     for _, entercb in pairs( self._enter_cb_list ) do
         entercb()
     end
+    table.print( self._data )
+    -- 进入主界面状态
+    _fsm:ChangeToState( FSMStateEnum.PLAYER_MAIN )
 end
 
 function CPlayer:GetTime()

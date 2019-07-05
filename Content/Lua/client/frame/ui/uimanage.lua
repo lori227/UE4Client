@@ -69,7 +69,7 @@ function CUIManage:HideUI( ui )
     ui:Hide()
     self._show_ui = ui._pre_ui
     ui._pre_ui = nil
-    self._show_list[ uiclass._class_name ] = nil
+    self._show_list[ ui._class_name ] = nil
 end
 
 return CUIManage

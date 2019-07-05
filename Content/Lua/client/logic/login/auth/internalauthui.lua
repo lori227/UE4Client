@@ -7,8 +7,7 @@ end
 function CUIInternalAuth:OnCreate()
     CUIPanle.OnCreate( self )
 
-    self._widget = slua.loadUI( '/Game/Blueprints/UI/Widget/Login/UI_InternalAuth.UI_InternalAuth' )
-
+    self._widget = slua.loadUI( '/Game/Blueprints/UI/Widget/UI_InternalAuth.UI_InternalAuth' )
     self._button_auth = self._widget:FindWidget( 'ButtonAuth' )
     self._edit_account = self._widget:FindWidget( 'EditTextAccount' )
     self._combo_url = self._widget:FindWidget( 'ComboAuthUrl' )
@@ -44,14 +43,15 @@ function CUIInternalAuth:OnClickButtonAuth()
 		print( "account is empty!" )
 		return
 	end
-
-	FLuaBind.SaveString( "login", "account", account )
 	
 	local selectindex = self._combo_url:GetSelectedIndex()
 	if selectindex == nil then
 		print( "select server auth url!")
 		return
 	end 
+
+	-- 保存数据
+	FLuaBind.SaveString( "login", "account", account )
 	FLuaBind.SaveString( "login", "url", selectindex )
 
 	local notify = {}

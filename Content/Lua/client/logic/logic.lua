@@ -13,6 +13,9 @@ _fsm:AddState( FSMStateEnum.INTERNAL_AUTH, CInternalAuthState )
 
 local CLoginGameState = require("logic/login/logingame/logingamestate")
 _fsm:AddState( FSMStateEnum.LOGIN_GAME, CLoginGameState )
+
+local CPlayerMainState = require("logic/player/playermain/playermainstate")
+_fsm:AddState( FSMStateEnum.PLAYER_MAIN, CPlayerMainState )
 -------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------

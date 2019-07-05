@@ -20,6 +20,7 @@ FSMStateEnum =
     AUTH_SWITCH = "switch",         -- 认证跳转
     LOGIN_GAME = "login",           -- 登陆游戏
     SELECT_ZONE = "zone",           -- 选择小区
+    PLAYER_MAIN = "main",           -- 主角界面
 }
 
 -- 渠道定义

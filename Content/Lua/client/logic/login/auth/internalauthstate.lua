@@ -6,10 +6,12 @@ function CInternalAuthState:ctor( stateid )
 end
 
 function CInternalAuthState:OnEnter()
+	CFSMState.OnEnter( self )
 	_ui_manage:Show( CUIInternalAuth, true )
 end
 
 function CInternalAuthState:OnLeave()
+	CFSMState.OnLeave( self )
 	--_ui_manage:Hide( CUIInternalAuth )
 end
 

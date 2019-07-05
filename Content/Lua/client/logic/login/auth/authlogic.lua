@@ -13,8 +13,6 @@ function CAuthLogic:OnAuthLogic( notify )
 	_login._account = notify.data.account
 	_login._channel = _define._channel
 
-	table.print(notify)
-
 	local response = _http_client:PostJson( notify.url, notify.data )
 	if response == nil then
 		_log:LogError( "url=["..notify.url.."] http failed!" )

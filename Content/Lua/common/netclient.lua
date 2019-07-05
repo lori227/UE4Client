@@ -1,6 +1,9 @@
 local CNetClient = class( "CNetClient" )
 
 function CNetClient:ctor()
+    self._ip = ""
+    self._port = 0
+
     -- 连接成功回调函数列表
     self._connect_functions = {}
 
@@ -17,7 +20,7 @@ function CNetClient:AddConnect( name, cbfunc )
 end
 
 function CNetClient:OnConnect( id, code )
-    _log:LogInfo( "client=["..id.."] connect!" )
+    _log:LogInfo( "client=["..id..".."..self._ip..":"..self._port.."] connect!" )
 
     for k, cbfunc in pairs( self._connect_functions ) do
         cbfunc( id, code )
@@ -30,7 +33,7 @@ function CNetClient:AddFailed( name, cbfunc )
 end
 
 function CNetClient:OnFailed( id, code )
-    _log:LogError( "client=["..id.."] failed, code=["..code.."]!" )
+    _log:LogError( "client=["..id..".."..self._ip..":"..self._port.."] failed, code=["..code.."]!" )
 
     for k, cbfunc in pairs( self._failed_functions ) do
         cbfunc( id, code )
@@ -43,7 +46,7 @@ function CNetClient:AddDisconenct( name, cbfunc )
 end
 
 function CNetClient:OnDisconnect( id, code )
-    _log:LogError( "client=["..id.."] disconnect, code=["..code.."]!" )
+    _log:LogError( "client=["..id..".."..self._ip..":"..self._port.."] disconnect, code=["..code.."]!" )
 
     for k, cbfunc in pairs( self._disconnect_functions ) do
         cbfunc( id, code )
@@ -52,6 +55,8 @@ end
 
 -- 连接
 function CNetClient:Connect( id, ip, port )
+    self._ip = ip;
+    self._port = port
     FLuaBind.Connect( id, ip, port )
 end
 

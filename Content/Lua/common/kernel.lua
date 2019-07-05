@@ -150,12 +150,12 @@ function CKernel:InitData( id, pbdata )
 end
 
 ---------------------------------------------------------
-local function UpdateData( dataname, datakey, data, pbdata )
+local function UpdateData( self, dataname, datakey, data, pbdata )
     for k, v in pairs( pbdata ) do
         if k == "pbobject" then
             for _, pbobject in pairs( v ) do
                 data[ pbobject.key ] = {}
-                UpdateData( pbobject.key, 0, data[ pbobject.key ], pbobject.value )
+                UpdateData( self, pbobject.key, 0, data[ pbobject.key ], pbobject.value )
             end
         elseif k == "pbrecord" then
             for _, pbrecord in pairs( v ) do
@@ -167,7 +167,7 @@ local function UpdateData( dataname, datakey, data, pbdata )
                     for _, pbobject in pairs( pbobjects ) do
                         local childdata = data[ pbrecord.key ][ pbobject.key ]
                         if childdata ~= nil then
-                            UpdateData( pbrecord.key, pbobject.key, childdata, pbobject.value )
+                            UpdateData( self, pbrecord.key, pbobject.key, childdata, pbobject.value )
                         end
                     end
                 end
@@ -180,7 +180,7 @@ local function UpdateData( dataname, datakey, data, pbdata )
                     data[ pbarray.key ][pbuint64.key] = pbuint64.value
                     
                     -- 回调逻辑
-                    _kernel:CallUpdateFunction( dataname, pbarray.key, datakey, oldvalue, pbhnt64.value )
+                    self:CallUpdateFunction( dataname, pbarray.key, datakey, oldvalue, pbhnt64.value )
                 end
             end
         else
@@ -189,7 +189,7 @@ local function UpdateData( dataname, datakey, data, pbdata )
                 data[ pbvalue.key ] = pbvalue.value
 
                 -- 回调逻辑
-                 _kernel:CallUpdateFunction( dataname, pbvalue.key, datakey, oldvalue, pbvalue.value )
+                 self:CallUpdateFunction( dataname, pbvalue.key, datakey, oldvalue, pbvalue.value )
             end   
         end
     end
@@ -197,10 +197,10 @@ end
 
 function CKernel:SyncUpdateData( data )
     -- 更新数据
-    UpdateData( self._kernel_name, 0, self._data, data )
+    UpdateData( self, self._kernel_name, 0, self._data, data )
 end
 ---------------------------------------------------------
-local function AddData( parentname, data, pbdata )
+local function AddData( self, parentname, data, pbdata )
     for k, v in pairs( pbdata ) do
         if k == "pbobject" then
             for _, pbobject in pairs( v ) do
@@ -208,7 +208,7 @@ local function AddData( parentname, data, pbdata )
                     data[ pbobject.key ] = {}
                 end
 
-                AddData( pbobject.key, data[ pbobject.key ], pbobject.value )
+                AddData( self, pbobject.key, data[ pbobject.key ], pbobject.value )
             end
         elseif k == "pbrecord" then
             for _, pbrecord in pairs( v ) do
@@ -223,7 +223,7 @@ local function AddData( parentname, data, pbdata )
                         data[ pbrecord.key ][ pbobject.key ] = childdata
 
                         -- 回调函数
-                        _kernel:CallAddFunction( parentname, pbrecord.key, pbobject.key, childdata ) 
+                        self:CallAddFunction( parentname, pbrecord.key, pbobject.key, childdata ) 
                     end
                 end
             end
@@ -232,15 +232,15 @@ local function AddData( parentname, data, pbdata )
 end
 
 function CKernel:SyncAddData( pbdata )
-    AddData( self._kernel_name, self._data, pbdata )
+    AddData( self, self._kernel_name, self._data, pbdata )
 end
 ---------------------------------------------------------
-local function RemoveData( parentname, data, pbdata )
+local function RemoveData( self, parentname, data, pbdata )
     for k, v in pairs ( pbdata ) do
         if k == "pbobject" then
             for _, pbobject in pairs( v ) do
                 if data[ pbobject.key ] ~= nil then
-                    RemoveData( pbobject.key, data[ pbobject.key ], pbobject.value )
+                    RemoveData( self, pbobject.key, data[ pbobject.key ], pbobject.value )
                 end
             end
         elseif k == "pbrecord" then
@@ -251,7 +251,7 @@ local function RemoveData( parentname, data, pbdata )
                             local childdata = data[ pbrecord.key ][ pbobject.key ]
                             if childdata ~= nil then
                                 -- 回调函数
-                                _kernel:CallRemoveFunction( parentname, pbrecord.key, pbobject.key, childdata ) 
+                                self:CallRemoveFunction( parentname, pbrecord.key, pbobject.key, childdata ) 
                                 data[ pbrecord.key ][ pbobject.key ] = nil
                             end
 
@@ -264,7 +264,7 @@ local function RemoveData( parentname, data, pbdata )
 end
 
 function CKernel:SyncRemoveData( pbdata )
-    RemoveData( self._kernel_name, self._data, pbdata )    
+    RemoveData( self, self._kernel_name, self._data, pbdata )    
 end
 
 ---------------------------------------------------------

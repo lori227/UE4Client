@@ -15,7 +15,7 @@ function HttpRequest( url, method, senddata )
         senddata = ""
     end
 
-    _log:LogInfo( "http send=["..senddata.."]" )
+    print( "http send=["..senddata.."]" )
 
     local response = {}
     local body, code, headers, status = http.request {
@@ -32,7 +32,7 @@ function HttpRequest( url, method, senddata )
 
     local str = response[1]
     if str ~= nil then
-        _log:LogInfo( "http result=["..str.."]" )
+        print( "http result=["..str.."]" )
     end
 
     return str
@@ -45,7 +45,7 @@ end
 function CHttpClient:PostJson( url, sendjson )
     local senddata = _json:Encode( sendjson )
     if senddata == nil then
-        _log:LogError( "url=["..url.."] json encode failed!" )
+        print( "url=["..url.."] json encode failed!" )
         return nil
     end
 
@@ -64,7 +64,7 @@ end
 function CHttpClient:GetJson( url, sendjson )
     local senddata = _json:Encode( sendjson )
     if senddata == nil then
-        _log:LogError( "url=["..url.."] json encode failed!" )
+        print( "url=["..url.."] json encode failed!" )
         return nil
     end
 

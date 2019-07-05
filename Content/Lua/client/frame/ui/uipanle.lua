@@ -17,7 +17,7 @@ function CUIPanle:Show( zorder )
 	end
 end
 
-function CUIPanle.Hide(self)
+function CUIPanle:Hide()
 	if self._widget ~= nil then
         self:OnHide()
         self._widget:RemoveFromViewport()

@@ -18,7 +18,7 @@ end
 function CUIInternalAuth:OnShow()
 	CUIPanle.OnShow( self )
 
-	local account = FLuaBind.ReadString( "login", "account" )
+	local account = FLuaBind.ReadString( _field.login, _field.account )
 	if account ~= nil then
 		self._edit_account:SetText( account )
 	end
@@ -26,10 +26,10 @@ function CUIInternalAuth:OnShow()
 	local authurl = _define._channel_data[ ChannelEnum.INTERNAL ]
 	self._combo_url:ClearOptions()
 	for _, v in pairs( authurl ) do
-		self._combo_url:AddOption( v._name .. " | " .. v._url )
+		self._combo_url:AddOption( v.name .. " | " .. v.url )
 	end
 
-	local selectindex = FLuaBind.ReadInt( "login", "url" )
+	local selectindex = FLuaBind.ReadInt( _field.login, _field.url )
 	if selectindex == nil or selectindex > #authurl then
 		selectindex = 0
 	end
@@ -51,14 +51,14 @@ function CUIInternalAuth:OnClickButtonAuth()
 	end 
 
 	-- 保存数据
-	FLuaBind.SaveString( "login", "account", account )
-	FLuaBind.SaveString( "login", "url", selectindex )
+	FLuaBind.SaveString( _field.login, _field.account, account )
+	FLuaBind.SaveString( _field.login, _field.url, selectindex )
 
 	local notify = {}
 	notify.data = {}
 	notify.data.account = account
 	notify.data.channel = ChannelEnum.INTERNAL
-	notify.url = _define._channel_data[ ChannelEnum.INTERNAL ][ selectindex + 1 ]._url
+	notify.url = _define._channel_data[ ChannelEnum.INTERNAL ][ selectindex + 1 ].url
 	print( "account...".. notify.data.account .."...url...".. notify.url )
 	
 	-- 发送验证消息

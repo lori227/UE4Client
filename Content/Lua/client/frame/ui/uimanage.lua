@@ -44,7 +44,7 @@ function CUIManage:Show( uiclass, prehide, zorder )
     local ui = self:Create( uiclass )
     self._show_list[ uiclass._class_name ] = ui
     if zorder == nil then
-        zorder = table.count( self._show_list ) + 1
+        zorder = table.count( self._show_list )
     end
 
     ui._pre_ui = self._show_ui

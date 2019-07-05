@@ -19,12 +19,18 @@ function CUIPlayerMain:OnShow()
 	CUIPanle.OnShow( self )
 
 	-- name 
-	self:SetNameText();
+	local name = _player:GetObjectValue( _field.basic, _field.name ) or ""
+	self:SetNameText( name );
+	_player:RegisterUpdateObject( _field.basic, _field.name, function(...) self:OnUpdateName(...) end )
 end
 
-function CUIPlayerMain:SetNameText()
-	local name = _player:GetObjectValue( _field.basic, _field.name ) or ""
-	print(name )
+function CUIPlayerMain:OnHide()
+	CUIPanle.OnHide( self )
+	
+	_player:UnRegisterUpdateObject( _field.basic, _field.name )
+end
+
+function CUIPlayerMain:SetNameText( name )
 	self._text_name:SetText( name )
 	self._button_name:SetIsEnabled( name == "" )
 end
@@ -37,11 +43,13 @@ function CUIPlayerMain:OnClickButtonSetName()
 
 	local data = 
 	{
-	   name = "lori",
+	   name = _login._account
 	}
     _net_client:Send( "MSG_SET_NAME_REQ", "KFMsg.MsgSetNameReq", data )
 end
 
-
+function CUIPlayerMain:OnUpdateName( key, oldvalue, newvalue )
+	self:SetNameText( newvalue )
+end
 
 return CUIPlayerMain

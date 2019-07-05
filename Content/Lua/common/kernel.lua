@@ -35,17 +35,34 @@ local function RegisterFunction( functions, parentname, childname, cbfunc )
     end
 end
 
+local function UnRegisterFunction( functions, parentname, childname )
+    local parentdata = functions[ parentname ]
+    if parentdata == nil then
+        return
+    end
+
+    parentdata[ childname ] = nil
+end
+
 --------------------------------------------------------------------
 -- 添加属性回调
-function CKernel:RegisterAddDataFunction( dataname, cbfunc )
+function CKernel:RegisterAddData( dataname, cbfunc )
     RegisterFunction( self._add_function, self._kernel_name, dataname, cbfunc )
 end
 
-function CKernel:RegisterAddObjectFunction( parentname, childname, cbfunc )
+function CKernel:UnRegisterAddData( dataname )
+    UnRegisterFunction( self._add_function, self._kernel_name, dataname )
+end
+
+function CKernel:RegisterAddObject( parentname, childname, cbfunc )
     RegisterFunction( self._add_function, parentname, childname, cbfunc )
 end
 
-function CKernel:CallAddFunction( parentname, childname, key, data )
+function CKernel:UnRegisterAddObject( parentname, childname )
+    UnRegisterFunction( self._add_function, parentname, childname )
+end
+
+function CKernel:CallAddData( parentname, childname, key, data )
     local parentdata = self._add_function[ parentname ]
     if parentdata == nil then
         return
@@ -60,15 +77,23 @@ function CKernel:CallAddFunction( parentname, childname, key, data )
 end
 --------------------------------------------------------------------
 -- 删除属性回调
-function CKernel:RegisterRemoveDataFunction( dataname, cbfunc )
+function CKernel:RegisterRemoveData( dataname, cbfunc )
     RegisterFunction( self._remove_function, self._kernel_name, dataname, cbfunc )
 end
 
-function CKernel:RegisterRemoveObjectFunction( parentname, childname, cbfunc )
+function CKernel:UnRegisterRemoveData( dataname )
+    UnRegisterFunction( self._remove_function, self._kernel_name, dataname )
+end
+
+function CKernel:RegisterRemoveObject( parentname, childname, cbfunc )
     RegisterFunction( self._remove_function, parentname, childname, cbfunc )
 end
 
-function CKernel:CallRemoveFunction( parentname, childname, key, data )
+function CKernel:UnRegisterRemoveObject( parentname, childname )
+    UnRegisterFunction( self._remove_function, parentname, childname )
+end
+
+function CKernel:CallRemoveData( parentname, childname, key, data )
     local parentdata = self._remove_function[ parentname ]
     if parentdata == nil then
         return
@@ -84,15 +109,23 @@ end
 
 --------------------------------------------------------------------
 -- 更新属性回调
-function CKernel:RegisterUpdateDataFunction( dataname, cbfunc )
+function CKernel:RegisterUpdateData( dataname, cbfunc )
     RegisterFunction( self._update_function, self._kernel_name, dataname, cbfunc )
 end
 
-function CKernel:RegisterUpdateObjectFunction( parentname, childname, cbfunc )
+function CKernel:UnRegisterUpdateData( dataname )
+    UnRegisterFunction( self._update_function, self._kernel_name, dataname )
+end
+
+function CKernel:RegisterUpdateObject( parentname, childname, cbfunc )
     RegisterFunction( self._update_function, parentname, childname, cbfunc )
 end
 
-function CKernel:CallUpdateFunction( parentname, childname, key, oldvalue, newvalue )
+function CKernel:UnRegisterUpdateObject( parentname, childname )
+    UnRegisterFunction( self._update_function, parentname, childname )
+end
+
+function CKernel:CallUpdateData( parentname, childname, key, oldvalue, newvalue )
     local parentdata = self._update_function[ parentname ]
     if parentdata == nil then
         return
@@ -180,7 +213,7 @@ local function UpdateData( self, dataname, datakey, data, pbdata )
                     data[ pbarray.key ][pbuint64.key] = pbuint64.value
                     
                     -- 回调逻辑
-                    self:CallUpdateFunction( dataname, pbarray.key, datakey, oldvalue, pbhnt64.value )
+                    self:CallUpdateData( dataname, pbarray.key, datakey, oldvalue, pbhnt64.value )
                 end
             end
         else
@@ -189,7 +222,7 @@ local function UpdateData( self, dataname, datakey, data, pbdata )
                 data[ pbvalue.key ] = pbvalue.value
 
                 -- 回调逻辑
-                 self:CallUpdateFunction( dataname, pbvalue.key, datakey, oldvalue, pbvalue.value )
+                 self:CallUpdateData( dataname, pbvalue.key, datakey, oldvalue, pbvalue.value )
             end   
         end
     end
@@ -223,7 +256,7 @@ local function AddData( self, parentname, data, pbdata )
                         data[ pbrecord.key ][ pbobject.key ] = childdata
 
                         -- 回调函数
-                        self:CallAddFunction( parentname, pbrecord.key, pbobject.key, childdata ) 
+                        self:CallAddData( parentname, pbrecord.key, pbobject.key, childdata ) 
                     end
                 end
             end
@@ -251,7 +284,7 @@ local function RemoveData( self, parentname, data, pbdata )
                             local childdata = data[ pbrecord.key ][ pbobject.key ]
                             if childdata ~= nil then
                                 -- 回调函数
-                                self:CallRemoveFunction( parentname, pbrecord.key, pbobject.key, childdata ) 
+                                self:CallRemoveData( parentname, pbrecord.key, pbobject.key, childdata ) 
                                 data[ pbrecord.key ][ pbobject.key ] = nil
                             end
 

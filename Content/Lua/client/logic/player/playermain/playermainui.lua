@@ -1,5 +1,6 @@
 local CUIPlayerMain = class( "CUIPlayerMain", CUIPanle )
 local _field = _field
+local CUISetPlayerName = require( "logic/player/playermain/setplayernameui" )
 
 function CUIPlayerMain:ctor( ... )
 	CUIPanle.ctor( self, ... )
@@ -11,7 +12,7 @@ function CUIPlayerMain:OnCreate()
 
     self._text_name = self._widget:FindWidget( 'TextName' )
     self._button_name = self._widget:FindWidget( 'ButtonSetName' )
-    self._button_name.OnClicked:Add( function() self:OnClickButtonSetName() end )
+    self._button_name.OnClicked:Add( function() self:OnClickButtonOpenSetName() end )
 
 end
 
@@ -35,21 +36,19 @@ function CUIPlayerMain:SetNameText( name )
 	self._button_name:SetIsEnabled( name == "" )
 end
 
-function CUIPlayerMain:OnClickButtonSetName()
+function CUIPlayerMain:OnClickButtonOpenSetName()
 	local name = self._text_name:GetText()
 	if name ~= "" then
 		return
 	end
 
-	local data = 
-	{
-	   name = _login._account
-	}
-    _net_client:Send( "MSG_SET_NAME_REQ", "KFMsg.MsgSetNameReq", data )
+	_ui_manage:Show( CUISetPlayerName, false )
 end
 
 function CUIPlayerMain:OnUpdateName( key, oldvalue, newvalue )
 	self:SetNameText( newvalue )
+
+	_ui_manage:Hide( CUISetPlayerName )
 end
 
 return CUIPlayerMain

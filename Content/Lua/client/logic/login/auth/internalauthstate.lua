@@ -6,11 +6,11 @@ function CInternalAuthState:ctor( stateid )
 end
 
 function CInternalAuthState:OnEnter()
-	_ui_manage:Show( CUIInternalAuth )
+	_ui_manage:Show( CUIInternalAuth, true )
 end
 
 function CInternalAuthState:OnLeave()
-	_ui_manage:Hide( CUIInternalAuth )
+	--_ui_manage:Hide( CUIInternalAuth )
 end
 
 return CInternalAuthState

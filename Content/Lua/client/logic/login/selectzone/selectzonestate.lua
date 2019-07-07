@@ -1,3 +1,4 @@
+local CUISelectZone = require("logic/login/selectzone/selectzoneui")
 local CSelectZoneState = class("CSelectZoneState", CFSMState)
 
 function CSelectZoneState:ctor( stateid )
@@ -5,13 +6,13 @@ function CSelectZoneState:ctor( stateid )
 end
 
 function CSelectZoneState:OnEnter()
-	CFSMState.cotr( self )
+	CFSMState.OnEnter( self )
 
-	if _define._have_server_list == false then
-		_fsm:ChangeToState( FSMStateEnum.SELECT_CHANNEL )
-	else
-		_fsm:ChangeToState( FSMStateEnum.SELECT_ZONE )
-	end
+	_ui_manage:Show( CUISelectZone, true )
+end
+
+function CSelectZoneState:OnLeave()
+	CFSMState.OnLeave( self )
 end
 
 

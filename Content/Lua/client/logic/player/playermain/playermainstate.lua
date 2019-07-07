@@ -14,5 +14,4 @@ function CPlayerMainState:OnLeave()
 	CFSMState.OnLeave( self )
 end
 
-
 return CPlayerMainState

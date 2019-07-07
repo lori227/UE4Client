@@ -54,11 +54,13 @@ function CUIInternalAuth:OnClickButtonAuth()
 	FLuaBind.SaveString( _field.login, _field.account, account )
 	FLuaBind.SaveString( _field.login, _field.url, selectindex )
 
+	_login._url = _define._channel_data[ ChannelEnum.INTERNAL ][ selectindex + 1 ].url
+
 	local notify = {}
 	notify.data = {}
+	notify.url = _login._url
 	notify.data.account = account
 	notify.data.channel = ChannelEnum.INTERNAL
-	notify.url = _define._channel_data[ ChannelEnum.INTERNAL ][ selectindex + 1 ].url
 	print( "account...".. notify.data.account .."...url...".. notify.url )
 	
 	-- 发送验证消息

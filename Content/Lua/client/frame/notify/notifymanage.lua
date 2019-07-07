@@ -34,8 +34,7 @@ function CNotifyManage:CallNotify( notifyid, data )
 		return false
 	end
 
-	notifydata._notify_cb( data )
-	return true
+	return notifydata._notify_cb( data )
 end
 
 return CNotifyManage

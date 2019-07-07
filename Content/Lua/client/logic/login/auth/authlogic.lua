@@ -1,9 +1,5 @@
 local CAuthLogic = class( "CAuthLogic", CNotify )
 
-function CAuthLogic:ctor()
-	CNotify.cotr( self )
-end
-
 function CAuthLogic:OnInit( notifyid )
 	CNotify.OnInit( self, notifyid )
 	self._notify_cb = function( data ) self:OnAuthLogic( data ) end
@@ -16,12 +12,12 @@ function CAuthLogic:OnAuthLogic( notify )
 	local response = _http_client:PostJson( notify.url, notify.data )
 	if response == nil then
 		_log:LogError( "url=["..notify.url.."] http failed!" )
-		return
+		return false
 	end
 
 	if response.retcode ~= 1 then
 		_display:ShowResult( response.retcode )
-		return
+		return false
 	end
 
 	_login._token = response.token
@@ -34,6 +30,8 @@ function CAuthLogic:OnAuthLogic( notify )
 	else
 		_fsm:ChangeToState( FSMStateEnum.SELECT_ZONE )
 	end
+
+	return true
 end
 
 return CAuthLogic

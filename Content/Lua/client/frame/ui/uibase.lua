@@ -20,8 +20,11 @@ function CUIBase:OnHide( ... )
 
 end
 
-function CUIBase:SendNotify( notifyid, notifydata )
-	_notify_manage:CallNotify( notifyid, notifydata )
+function CUIBase:SendNotify( notifyid, notifydata, cb )
+	local ok, data = _notify_manage:CallNotify( notifyid, notifydata )
+	if ok == true and cb ~= nil then
+		cb( data )
+	end
 end
 
 return CUIBase

@@ -35,12 +35,13 @@ ChannelEnum =
 NotifyEnum = 
 {
     AUTH = 1,       -- 账号认证
+    ZONELIST = 2,   -- 请求小区列表
 }
 
 _define = {}
 
 -- 是否有选服界面     
-_define._have_server_list = false
+_define._have_server_list = true
 
 -- 是否需要断线重脸
 _define._need_reconnect = true

@@ -37,38 +37,42 @@ function CUIManage:Destroy( uiclass )
 end
 
 function CUIManage:Show( uiclass, prehide, zorder ) 
-    if prehide == true then
-        self:HideUI( self._show_ui )
-    end
-
     local ui = self:Create( uiclass )
     self._show_list[ uiclass._class_name ] = ui
     if zorder == nil then
         zorder = table.count( self._show_list )
     end
 
-    ui._pre_ui = self._show_ui
-    self._show_ui = ui
-
     ui:Show( zorder )
     print( uiclass._class_name .. "...show...order...".. zorder )
+
+   if prehide == true then
+        self:HideUI( self._show_ui, false )
+    end
+
+    ui._pre_ui = self._show_ui
+    self._show_ui = ui
 end
 
-function CUIManage:Hide( uiclass )    
+function CUIManage:Hide( uiclass, prerefresh )    
     local ui = self._show_list[ uiclass._class_name ]
-    self:HideUI( ui )
+    self:HideUI( ui, prerefresh )
 end
 
-function CUIManage:HideUI( ui )
+function CUIManage:HideUI( ui, prerefresh )
     if ui == nil then
         return
     end
 
-    print( ui._class_name .. "...hide" )
+    if prerefresh == true and ui._pre_ui ~= nil then
+        ui._pre_ui:OnShow()
+    end
 
-    ui:Hide()
+    print( ui._class_name .. "...hide" )
     self._show_ui = ui._pre_ui
     ui._pre_ui = nil
+
+    ui:Hide()
     self._show_list[ ui._class_name ] = nil
 end
 

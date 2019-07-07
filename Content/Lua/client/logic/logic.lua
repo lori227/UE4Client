@@ -11,6 +11,9 @@ _fsm:AddState( FSMStateEnum.SELECT_CHANNEL, CSelectChannelState )
 local CInternalAuthState = require("logic/login/auth/internalauthstate")
 _fsm:AddState( FSMStateEnum.INTERNAL_AUTH, CInternalAuthState )
 
+local CSelectZoneState = require("logic/login/selectzone/selectzonestate")
+_fsm:AddState( FSMStateEnum.SELECT_ZONE, CSelectZoneState )
+
 local CLoginGameState = require("logic/login/logingame/logingamestate")
 _fsm:AddState( FSMStateEnum.LOGIN_GAME, CLoginGameState )
 
@@ -23,6 +26,9 @@ _fsm:AddState( FSMStateEnum.PLAYER_MAIN, CPlayerMainState )
 -------------------------------------------------------------------------------------------
 local CAuthLogic = require("logic/login/auth/authlogic")
 _notify_manage:AddNotify( NotifyEnum.AUTH, CAuthLogic )
+
+local CZoneListLogic = require("logic/login/selectzone/zonelistlogic")
+_notify_manage:AddNotify( NotifyEnum.ZONELIST, CZoneListLogic )
 -------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------

@@ -50,7 +50,8 @@ void FThread::Shutdown()
     Stop();
     if ( _runable != nullptr )
     {
-        _runable->Kill( true );
+        _runable->Kill( false );
+        __SAFE_DELETE__( _runable );
     }
 }
 

@@ -50,7 +50,7 @@ void FNetSocket::Close()
     {
         _net_recv->StopService();
     }
-        
+
     if ( _socket != nullptr )
     {
         _socket->Close();
@@ -91,13 +91,19 @@ void FNetSocket::OnConnect()
 void FNetSocket::OnFailed()
 {
     _is_connect = false;
-    UEventModule::GetEventModule()->PushEvent( EEventType::FailedConnect );
+    if ( !_is_close )
+    {
+        UEventModule::GetEventModule()->PushEvent( EEventType::FailedConnect );
+    }
 }
 
 void FNetSocket::OnDisconnect()
 {
     _is_connect = false;
-    UEventModule::GetEventModule()->PushEvent( EEventType::Disconnect );
+    if ( !_is_close )
+    {
+        UEventModule::GetEventModule()->PushEvent( EEventType::Disconnect );
+    }
 }
 
 bool FNetSocket::SendNetMessage( uint32 msgid, const int8* data, uint32 length )

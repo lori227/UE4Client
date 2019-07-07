@@ -102,7 +102,7 @@ void FNetSocket::OnDisconnect()
 
 bool FNetSocket::SendNetMessage( uint32 msgid, const int8* data, uint32 length )
 {
-    if ( !_is_connect && !_is_disconnect_send )
+    if ( _is_close || ( !_is_connect && !_is_disconnect_send ) )
     {
         return false;
     }

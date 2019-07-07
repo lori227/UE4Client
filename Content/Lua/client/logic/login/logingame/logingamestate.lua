@@ -16,6 +16,8 @@ end
 function CLoginGameState:OnEnter()
 	CFSMState.OnEnter( self )
 
+	self._connect_failed_count = 0
+	
 	-- 连接服务器
 	self:ConnectServer()
 end
@@ -27,8 +29,6 @@ function CLoginGameState:OnLeave()
 end
 
 function CLoginGameState:ConnectServer()
-	self._connect_failed_count = 0
-
 	-- 开始连接
 	local zone = _login._zone
 	_net_client:Connect( zone.zoneid, zone.ip, zone.port )
@@ -38,7 +38,9 @@ function CLoginGameState:OnNetFailed( id, code )
     self._connect_failed_count = self._connect_failed_count + 1
     print( "connect failed count ...".. self._connect_failed_count )
 
-    if self._connect_failed_count >= 3 then
+    if self._connect_failed_count < 3 then
+    	self:ConnectServer()
+    else
 		if _define._have_server_list == false then
 			_fsm:ChangeToState( FSMStateEnum.SELECT_CHANNEL )
 		else

@@ -39,7 +39,7 @@ function CUIZoneList:OnQueryZoneListOk( zonelist )
 end
 
 function CUIZoneList:OnClickButtonClose()
-    _ui_manage:HideUI( self, true )
+    _ui_manage:HideUI( self, false )
 end
 
 return CUIZoneList

@@ -1,6 +1,7 @@
 local CUIPlayerMain = class( "CUIPlayerMain", CUIPanle )
 local _field = _field
 local CUISetPlayerName = require( "logic/player/playermain/setplayernameui" )
+local CUIOptionSetting = require( "logic/player/optionsetting/optionsettingui" )
 
 function CUIPlayerMain:ctor( ... )
 	CUIPanle.ctor( self, ... )
@@ -14,6 +15,9 @@ function CUIPlayerMain:OnCreate()
     self._button_name = self._widget:FindWidget( 'ButtonSetName' )
     self._button_name.OnClicked:Add( function() self:OnClickButtonOpenSetName() end )
 
+    -- setting
+    self._button_option = self._widget:FindWidget( 'ButtonOpenOption' )
+    self._button_option.OnClicked:Add( function() self:OnClickButtonOpenOption() end )
 end
 
 function CUIPlayerMain:OnShow()
@@ -48,7 +52,11 @@ end
 function CUIPlayerMain:OnUpdateName( key, oldvalue, newvalue )
 	self:SetNameText( newvalue )
 
-	_ui_manage:Hide( CUISetPlayerName )
+	_ui_manage:Hide( CUISetPlayerName, false )
+end
+
+function CUIPlayerMain:OnClickButtonOpenOption()
+	_ui_manage:Show( CUIOptionSetting, false )
 end
 
 return CUIPlayerMain

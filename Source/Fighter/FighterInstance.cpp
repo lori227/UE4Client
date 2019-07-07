@@ -1,4 +1,4 @@
-﻿// Fill out your copyright notice in the Description page of Project Settings.
+// Fill out your copyright notice in the Description page of Project Settings.
 
 
 #include "FighterInstance.h"
@@ -118,14 +118,19 @@ void UFighterInstance::LoadComplete( const float loadtime, const FString& mapnam
     __LOG_INFO__( LogInstance, "LoadComplete...[{}]!", TCHAR_TO_UTF8( *mapname ) );
 }
 /////////////////////////////////////////////////////////////////////////////////////
-void UFighterInstance::Connect( uint64 id, FString& ip, uint32 port )
+void UFighterInstance::NetConnect( uint64 id, FString& ip, uint32 port )
 {
     _net_client->Connect( id, ip, port );
 }
 
-bool UFighterInstance::Send( uint32 msgid, const int8* data, uint32 length )
+bool UFighterInstance::NetSend( uint32 msgid, const int8* data, uint32 length )
 {
     return _net_client->SendNetMessage( msgid, data, length );
+}
+
+void UFighterInstance::NetClose()
+{
+    _net_client->Shutdown();
 }
 
 void UFighterInstance::HandleNetMessage( uint32 msgid, const int8* data, uint32 length )

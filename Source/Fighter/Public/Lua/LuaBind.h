@@ -24,12 +24,11 @@ namespace slua
         // time
         static uint64 GetTime();
 
-        // net connect
-        static void Connect( uint64 id, const char* ip, uint32 port );
-
-        // net send
-        static bool Send( uint32 msgid, const char* data, uint32 length );
-
+        // net
+        static void NetConnect( uint64 id, const char* ip, uint32 port );
+        static bool NetSend( uint32 msgid, const char* data, uint32 length );
+        static void NetClose();
+        
         // log
         static void LogContent( uint32 level, const char* content );
         

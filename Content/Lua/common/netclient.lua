@@ -41,7 +41,7 @@ function CNetClient:OnFailed( id, code )
 end
 
 -- 断开连接
-function CNetClient:AddDisconenct( name, cbfunc )
+function CNetClient:AddDisconnect( name, cbfunc )
     self._disconnect_functions[ name ] = cbfunc
 end
 
@@ -57,7 +57,7 @@ end
 function CNetClient:Connect( id, ip, port )
     self._ip = ip;
     self._port = port
-    FLuaBind.Connect( id, ip, port )
+    FLuaBind.NetConnect( id, ip, port )
 end
 
 -- 删除消息处理
@@ -72,13 +72,18 @@ function CNetClient:Send( msgenum, msgname, msgtable )
         return false
     end
 
-    local ok = FLuaBind.Send( msgid, str, #str )
+    local ok = FLuaBind.NetSend( msgid, str, #str )
     if ok == false then
         _log:LogError( "send msgid =["..msgid.."] failed!" )
         return false
     end
 
     return true
+end
+
+-- 关闭连接
+function CNetClient:Close()
+    FLuaBind.NetClose()
 end
 
 return CNetClient

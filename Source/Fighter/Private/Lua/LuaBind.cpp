@@ -23,15 +23,20 @@ namespace slua
         return ( uint64 )FPlatformTime::Seconds();
     }
     
-    void FLuaBind::Connect( uint64 id, const char* ip, uint32 port )
+    void FLuaBind::NetConnect( uint64 id, const char* ip, uint32 port )
     {
         FString strip = UTF8_TO_TCHAR( ip );
-        UFighterInstance::Instance()->Connect( id, strip, port );
+        UFighterInstance::Instance()->NetConnect( id, strip, port );
     }
 
-    bool FLuaBind::Send( uint32 msgid, const char* data, uint32 length )
+    bool FLuaBind::NetSend( uint32 msgid, const char* data, uint32 length )
     {
-        return UFighterInstance::Instance()->Send( msgid, ( const int8* )data, length );
+        return UFighterInstance::Instance()->NetSend( msgid, ( const int8* )data, length );
+    }
+    
+    void FLuaBind::NetClose()
+    {
+        UFighterInstance::Instance()->NetClose();
     }
 
     void FLuaBind::LogContent( uint32 level, const char* content )
@@ -126,8 +131,9 @@ namespace slua
     DefLuaMethod( ContentDir, &FLuaBind::ProjectContentDir )
     DefLuaMethod( GetTime, &FLuaBind::GetTime )
     DefLuaMethod( Log, &FLuaBind::LogContent )
-    DefLuaMethod( Connect, &FLuaBind::Connect )
-    DefLuaMethod( Send, &FLuaBind::Send )
+    DefLuaMethod( NetConnect, &FLuaBind::NetConnect )
+    DefLuaMethod( NetSend, &FLuaBind::NetSend )
+    DefLuaMethod( NetClose, &FLuaBind::NetClose )
     DefLuaMethod( SaveInt, &FLuaBind::SaveInt )
     DefLuaMethod( SaveDouble, &FLuaBind::SaveDouble )
     DefLuaMethod( SaveString, &FLuaBind::SaveString )

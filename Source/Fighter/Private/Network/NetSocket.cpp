@@ -1,4 +1,4 @@
-﻿// Fill out your copyright notice in the Description page of Project Settings.
+// Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Public/Network/NetSocket.h"
 #include "Public/Network/NetConnect.h"
@@ -36,12 +36,6 @@ void FNetSocket::Close()
     _is_close = true;
     _is_connect = false;
 
-    if ( _socket != nullptr )
-    {
-        _socket->Close();
-        __SAFE_DELETE_FUNCTION__( _socket, ISocketSubsystem::Get( PLATFORM_SOCKETSUBSYSTEM )->DestroySocket );
-    }
-
     if ( _net_connect != nullptr )
     {
         _net_connect->StopService();
@@ -55,6 +49,12 @@ void FNetSocket::Close()
     if ( _net_recv != nullptr )
     {
         _net_recv->StopService();
+    }
+        
+    if ( _socket != nullptr )
+    {
+        _socket->Close();
+        __SAFE_DELETE_FUNCTION__( _socket, ISocketSubsystem::Get( PLATFORM_SOCKETSUBSYSTEM )->DestroySocket );
     }
 }
 

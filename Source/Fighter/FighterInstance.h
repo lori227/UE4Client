@@ -1,4 +1,4 @@
-﻿// Fill out your copyright notice in the Description page of Project Settings.
+// Fill out your copyright notice in the Description page of Project Settings.
 
 #pragma once
 
@@ -46,11 +46,13 @@ public:
 
 public:
     // net connect
-    void Connect( uint64 id, FString& ip, uint32 port );
+    void NetConnect( uint64 id, FString& ip, uint32 port );
 
     // net send
-    bool Send( uint32 msgid, const int8* data, uint32 length );
+    bool NetSend( uint32 msgid, const int8* data, uint32 length );
 
+    // net close
+    void NetClose();
 protected:
     // 处理消息函数
     void HandleNetMessage( uint32 msgid, const int8* data, uint32 length );

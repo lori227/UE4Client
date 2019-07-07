@@ -21,8 +21,8 @@ function Main.Init()
 
 	-- netclient 
 	_event:AddEvent( EventEnum.NET_CONNECT, function( id, value ) _net_client:OnConnect( id, value ) end )
-	_event:AddEvent( EventEnum.NET_DISCONNECT, function( id, value ) _net_client:OnFailed( id, value ) end )
-	_event:AddEvent( EventEnum.NET_FAILEDCONNECT, function( id, value ) _net_client:OnDisconnect( id, value ) end )
+	_event:AddEvent( EventEnum.NET_DISCONNECT, function( id, value ) _net_client:OnDisconnect( id, value ) end )
+	_event:AddEvent( EventEnum.NET_FAILEDCONNECT, function( id, value ) _net_client:OnFailed( id, value ) end )
 
 	-- fsm
 	_event:AddEvent( EventEnum.INIT_FINISH, Main.Startup )

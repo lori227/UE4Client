@@ -17,6 +17,9 @@ _fsm:AddState( FSMStateEnum.SELECT_ZONE, CSelectZoneState )
 local CLoginGameState = require("logic/login/logingame/logingamestate")
 _fsm:AddState( FSMStateEnum.LOGIN_GAME, CLoginGameState )
 
+local CExitGameState = require("logic/login/exitgame/exitgamestate")
+_fsm:AddState( FSMStateEnum.EXIT_GAME, CExitGameState )
+
 local CPlayerMainState = require("logic/player/playermain/playermainstate")
 _fsm:AddState( FSMStateEnum.PLAYER_MAIN, CPlayerMainState )
 -------------------------------------------------------------------------------------------

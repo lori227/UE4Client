@@ -21,6 +21,7 @@ FSMStateEnum =
     LOGIN_GAME = "login",           -- 登陆游戏
     SELECT_ZONE = "zone",           -- 选择小区
     PLAYER_MAIN = "main",           -- 主角界面
+    EXIT_GAME = "exit",             -- 退出游戏
 }
 
 -- 渠道定义

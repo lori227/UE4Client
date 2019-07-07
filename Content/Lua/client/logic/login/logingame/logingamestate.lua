@@ -11,7 +11,6 @@ function CLoginGameState:OnInit()
 	CFSMState.OnInit( self )
 	_net_client:AddFailed( self._class_name, function( id, code ) self:OnNetFailed( id, code ) end )
 	_net_client:AddConnect( self._class_name, function( id, code ) self:OnNetConnect( id, code ) end )
-	_net_client:AddDisconenct( self._class_name, function( id, code ) self:OnNetDisonnect( id, code ) end )
 end
 
 function CLoginGameState:OnEnter()
@@ -59,14 +58,6 @@ function CLoginGameState:OnNetConnect( id, code )
 	   version = "0.0.0.0"
 	}
     _net_client:Send( "MSG_LOGIN_REQ", "KFMsg.MsgLoginReq", data )
-end
-
-function CLoginGameState:OnNetDisonnect( id, code )
-	if _define._need_reconnect == true then
-		self:ConnectServer()
-	else
-		-- todo
-	end
 end
 
 return CLoginGameState

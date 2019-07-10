@@ -208,12 +208,14 @@ local function UpdateData( self, dataname, datakey, data, pbdata )
         elseif k == "pbarray" then
             for _, pbarray in pairs( v ) do
                 data[ pbarray.key ] = {}
-                for _, pbuint64 in pairs( pbarray.value ) do
-                    local oldvalue = data[ pbarray.key ][pbuint64.key] or 0
-                    data[ pbarray.key ][pbuint64.key] = pbuint64.value
-                    
-                    -- 回调逻辑
-                    self:CallUpdateData( dataname, pbarray.key, datakey, oldvalue, pbhnt64.value )
+                for _, pbuint64s in pairs( pbarray.value ) do
+                    for _, pbuint64 in pairs( pbuint64s ) do
+                        local oldvalue = data[ pbarray.key ][pbuint64.key] or 0
+                        data[ pbarray.key ][pbuint64.key] = pbuint64.value
+                        
+                        -- 回调逻辑
+                        self:CallUpdateData( dataname, pbarray.key, datakey, oldvalue, pbhnt64.value )
+                    end
                 end
             end
         else
